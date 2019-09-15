@@ -59,4 +59,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  protected
+    # アカウント編集後、プロフィール画面に移動する
+    def after_update_path_for(resource)
+      user_path(id: current_user.id)
+    end
 end

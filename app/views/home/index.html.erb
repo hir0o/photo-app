@@ -12,7 +12,7 @@
 <%= link_to "会員登録", new_user_registration_path, class: "topbtn__item" %>
 <%= link_to "ログイン", new_user_session_path, class: "topbtn__item" %>
 <% if current_user %>
-<%= link_to "ログアウト", new_user_session_path, class: "topbtn__item" %>
+  <%= link_to "ログアウト", destroy_user_session_path,method: "delete", class: "topbtn__item" %>
 <% end %>
 </div>
 
