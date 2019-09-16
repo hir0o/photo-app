@@ -1,0 +1,18 @@
+<h1>投稿フォーム</h1>
+<% if @post.errors.any? %>
+<div id="error_explanation">
+  <div class="alert alert-danger">
+     The form contains <%=  pluralize(@post.errors.count, "error")%>
+  </div>
+  <ul>
+  <% @post.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</div>
+<% end %>
+
+<%= form_for(@post) do |f| %>
+  <%= f.text_area :content, placeholder: "Compose new post..." %>
+  <%= f.file_field :picture %>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

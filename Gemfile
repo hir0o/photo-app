@@ -62,4 +62,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 追加gem
 gem 'devise'
-gem 'bcrypt', '~> 3.1.13'
+gem 'bcrypt',        '~> 3.1.13'
+gem 'carrierwave',   '1.2.2'
+gem 'mini_magick',   '4.7.0'
+# 本番環境で使うß
+# gem 'fog'

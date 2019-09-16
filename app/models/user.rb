@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, presence: true
   validates :profile, length: { maximum: 200 }
+  has_many :posts, dependent: :destroy
 end
