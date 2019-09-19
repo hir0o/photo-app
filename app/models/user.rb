@@ -6,4 +6,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :profile, length: { maximum: 200 }
   has_many :posts, dependent: :destroy
+  # ProfileImageアップローダーを紐付け
+  mount_uploader :profile_image, ProfileImageUploader
 end

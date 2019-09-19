@@ -5,11 +5,27 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa|Varela+Round&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <header>
+    <div class="header-logo"><%= link_to "PHOTO APP", root_path %></div>
+    <div class="header-menu">
+      <ul class="header-list">
+        <% unless current_user %>
+          <li class="header-list__item"><%= link_to 'ログイン', new_user_session_path %></li>
+          <li class="header-list__item"><%= link_to "会員登録", new_user_registration_path%></li>
+        <% else %>
+          <li class="header-list__item"><%= link_to "ユーザーページ", current_user %></li>
+          <li class="header-list__item"><%= link_to "投稿する", new_post_path %></li>
+        <% end %>
+        
+      </ul>
+    </div>
+  </header>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     

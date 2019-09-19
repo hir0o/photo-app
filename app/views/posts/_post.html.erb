@@ -1,4 +1,11 @@
-<li>
-<p><%= post.content %></p>
-<%= image_tag post.picture.url if post.picture? %>
+<%= link_to(post, class: "post-link") do %>
+<li class="post-list__item">
+<!--<p><%= post.content %></p>-->
+<div class="post-image post-image-<%= post.id %>"></div>
 </li>
+<% end %>
+<style>
+  .post-image-<%= post.id %> {
+    background-image: url("<%= post.picture.url %>")
+  }
+</style>
