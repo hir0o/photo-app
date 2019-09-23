@@ -1,10 +1,22 @@
 class PostsController < ApplicationController
+  def index
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+    if params[:tag_name]
+      @posts = @posts.tagged_with("#{params[:tag_name]}")
+    end
+    @posts = Post.all
+  end
+
   def new
     @post = current_user.posts.build
   end
 
   def show
     @post = Post.find(params[:id])
+    @like = Like.new
+    @comments = @post.comments
+    @comment = Comment.new
   end
 
   def create
@@ -21,11 +33,11 @@ class PostsController < ApplicationController
     flash[:success] = "Micropost deleted"
     redirect_to request.referrer || root_url
   end
-
+  
   private
   
     def posts_params
-      params.require(:post).permit(:content, :picture)
+      params.require(:post).permit(:title, :tag_list, :picture)
     end
 
   # def microposts_current_user

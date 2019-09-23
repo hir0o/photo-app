@@ -12,7 +12,8 @@
 <% end %>
 
 <%= form_for(@post) do |f| %>
-  <%= f.text_area :content, placeholder: "Compose new post..." %>
+  <%= f.text_field :title, placeholder: "タイトル" %>
   <%= f.file_field :picture %>
+  <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", placeholder: "タグ" %>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

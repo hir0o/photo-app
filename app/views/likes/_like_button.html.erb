@@ -1,0 +1,5 @@
+<% if current_user.already_liked?(@post) %>
+  <%= link_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
+<% else %>
+  <%= link_to 'いいね', post_likes_path(@post), method: :post %>
+<% end %>

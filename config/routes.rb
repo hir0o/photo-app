@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: 'home#index'
-  resources :users, only: [:show]
-  resources :posts, only: [:new, :show, :create, :destroy]
-  # devise_for :users, :controllers => {
-  #   :registrations => 'users/registrations',
-  #   :sessions => 'users/sessions'   
-  # }
-  # devise_scope :user do
-  #   get "sign_in", :to => "users/sessions#new"
-  #   get "sign_out", :to => "users/sessions#destroy" 
-  # end
+  devise_for :users
+  resources :users, only: [:show] do
+    resources :likes, only: [:index]
+    member do
+      get :following, :followers
+     end
+  end
+
+  resources :relationships, only: %i[create destroy]
+  resources :posts, only: %i[index new show create destroy] do
+    resources :likes, only:%i[create destroy]
+    resources :comments, only: [:create]
+  end
 end

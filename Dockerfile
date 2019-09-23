@@ -6,6 +6,7 @@ COPY Gemfile /photo-app/Gemfile
 COPY Gemfile.lock /photo-app/Gemfile.lock
 RUN bundle install
 COPY . /photo-app
+RUN apt-get install -y vim
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/

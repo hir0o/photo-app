@@ -231,6 +231,7 @@ font-size: 1rem;
   background-size: cover;
   background-position: center;
   position: relative;
+  margin: 0 auto;
 }
 
 .user-name {
@@ -246,14 +247,22 @@ font-size: 1rem;
   margin-left: 5rem;
 }
 
+.stats {
+  word-spacing: nowrap;
+}
+
+.stats-link {
+  color: #eee;
+  word-spacing: nowrap;
+}
 .user-canopy:before{
   content: '';
   background: inherit;
-  -webkit-filter: blur(15px);
-  -moz-filter: blur(15px);
-  -o-filter: blur(15px);
-  -ms-filter: blur(15px);
-  filter: blur(15px);
+  -webkit-filter: blur(15px) brightness(50%);
+  -moz-filter: blur(15px) brightness(50%);
+  -o-filter: blur(15px) brightness(50%);
+  -ms-filter: blur(15px) brightness(50%);
+  filter: blur(15px) brightness(50%);
   position: absolute;
   top: -15px;
   left: -15px;
@@ -286,4 +295,81 @@ font-size: 1rem;
 .post-link {
   width: 25%;
   display: block;
+}
+
+.post-picture {
+  width: 100%;
+}
+
+.user-link {
+  position: absolute;
+  bottom: .5rem;
+  right: 2rem;
+  display: flex;
+  color: #ffffff;
+  &__item + &__item {
+    margin-left: 1rem;
+  }
+  &__item a {
+    color: #eee;
+  }
+}
+
+#follow_form {
+  margin-top: 0.5rem;
+}
+
+
+
+
+ul.menu-level {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+  box-shadow: 0 0 8px 0 rgba(0,0,0,.15);
+}
+
+
+// .menu-level li a:hover {
+
+// }
+
+.menu > li.menu__single {
+  position: relative;
+  margin-left: 1rem;
+}
+
+li.menu__single ul.menu-level {
+  position: absolute;
+  top: 45px;
+  padding: .5rem;
+  background-color: rgb(255,255,255);
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+li.menu__single:hover ul.menu-level {
+  top: 45px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu-lavel__item + .menu-lavel__item {
+  margin-top: 0.3rem;
+}
+
+
+// post show
+
+.post-show-container {
+  min-width: 1000px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.post-footer {
+  display: flex;
+  &__content {
+    width: 50%;
+  }
 }

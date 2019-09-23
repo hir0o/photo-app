@@ -65,5 +65,7 @@ gem 'devise'
 gem 'bcrypt',        '~> 3.1.13'
 gem 'carrierwave',   '1.2.2'
 gem 'mini_magick',   '4.7.0'
-# 本番環境で使うß
+gem 'ransack'
+gem 'acts-as-taggable-on', '~> 6.0'
+# 本番環境で使う?
 # gem 'fog'

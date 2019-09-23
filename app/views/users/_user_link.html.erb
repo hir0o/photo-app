@@ -1,0 +1,7 @@
+  <ul class="user-link">
+    <li class="user-link__item"><%= link_to "投稿一覧", @user %></li>
+    <li class="user-link__item"><%= link_to "お気に入り",  user_likes_path(@user) %></li>
+    <% if current_user?(@user) %>
+      <li class="user-link__item"><%= link_to "編集", edit_user_registration_path %></li>
+    <% end %>
+  </ul>

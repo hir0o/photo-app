@@ -1,26 +1,2 @@
-<div class="user-canopy">
-  <div class="user-box">
-  <div class="user-box__image">
-    <%= link_to image_tag("pen.svg", class: "user-box__edit--image"), edit_user_registration_path,class: "user-box__edit" %>
-  </div>
-  <p class="user-name"><%= @user.name %></p>
-  </div>
-  <div class="profile-box">
-  <%= @user.profile %>
-  </div>
-</div>
-<h3>投稿一覧</h3>
-<ul class="post-list">
-  <%= render @post %>
-</ul>
-
-<div class="test"></div>
-
-<style>
-  .user-box__image {
-    background-image: url("<%= @user.profile_image.url %>");
-  }
-  .user-canopy {
-    background-image: url("<%= @user.profile_image.url %>");
-  }
-</style>
+<%= render  'user_profile' %>
+<%= render 'posts/feed', title: "投稿一覧" %>

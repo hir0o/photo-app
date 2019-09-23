@@ -1,9 +1,17 @@
 class Post < ApplicationRecord
   belongs_to :user
-# 投稿を降順にする.
   default_scope -> { order(created_at: :desc) }
-  mount_uploader :picture, PictureUploader
+  mount_uploader  :picture, PictureUploader
+  # mount_uploaders :pictures, PictureUploader
   validates  :picture, presence: true
   validates  :user_id, presence: true
-  validates  :content, presence: true, length: { maximum: 140 }
+  validates  :title, presence: true, length: { maximum: 140 }
+  # like関係
+  has_many   :likes
+  has_many   :liked_users, through: :likes, source: :user
+  # comment
+  has_many :comments
+  # tag
+  acts_as_taggable
+  
 end

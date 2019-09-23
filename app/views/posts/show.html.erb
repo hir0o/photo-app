@@ -1,1 +1,40 @@
-<%= @post.content%>
+<div class="post-show-container">
+<h3>
+<%= @post.title %>
+</h3>
+<%= image_tag @post.picture.url, class: "post-picture" %>
+<div class="post-footer">
+<div class="post-footer__content">
+  <h2>コメント一覧</h2>
+  <%= form_for [@post, @comment] do |f| %>
+    <%= f.text_field :content %>
+    <br>
+    <%= f.submit 'コメントする' %>
+  <% end %>
+
+<% @comments.each do |c| %>
+  <div>
+    <a href="/users/<%= @post.user.id %>"><%= c.user.email %></a>
+    <%= c.content %>
+    <hr>
+  </div>
+<% end %>
+
+</div>
+
+
+<div class="post-footer__content">
+<h2>いいねしたユーザー</h2>
+<% @post.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+<%= render 'likes/like_button' %>
+<%= @post.likes.count %>
+<% @post.tag_list.each do |tag| %>
+  <p>
+  <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
+  </p>
+<% end %>
+</div>
+</div>
+</div>
