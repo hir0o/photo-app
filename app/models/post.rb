@@ -13,5 +13,6 @@ class Post < ApplicationRecord
   has_many :comments
   # tag
   acts_as_taggable
-  
+
+
 end

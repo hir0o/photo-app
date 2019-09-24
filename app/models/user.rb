@@ -38,4 +38,9 @@ class User < ApplicationRecord
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
   end
+
+    #  minimagick
+    def thumbnail
+      return self.variant(resize: '150x150').processed
+    end
 end

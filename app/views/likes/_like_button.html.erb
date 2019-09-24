@@ -1,5 +1,9 @@
 <% if current_user.already_liked?(@post) %>
-  <%= link_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
+  <%= link_to(post_like_path(@post), method: :delete) do %>
+    <%=  image_tag 'gooded.svg', class: "good-icon" %>
+  <% end %>
 <% else %>
-  <%= link_to 'いいね', post_likes_path(@post), method: :post %>
+  <%= link_to(post_likes_path(@post), method: :post) do %>
+    <%=  image_tag 'good.svg', class: "good-icon" %>
+  <% end %>
 <% end %>

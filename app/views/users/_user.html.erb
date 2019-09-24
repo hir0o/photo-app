@@ -1,0 +1,15 @@
+<div class="users-box">
+<div class="flex">
+  <%= image_tag current_user.profile_image.url, class: "profile-image", size: "150" %>
+  <div class="users-box__profile">
+  <p>
+  <%= user.name %>
+  </p>
+  </div>
+</div>
+  <div class="users-box__posts">
+  <% user.posts.each do |post| %>
+    <%= image_tag post.picture.url, class: "users-box__post-picture", size: "150" %>
+  <% end %>
+  </div>
+</div>

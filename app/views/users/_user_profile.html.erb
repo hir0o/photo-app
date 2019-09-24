@@ -1,24 +1,23 @@
 <div class="user-canopy">
   <div class="user-box">
-  <div class="user-box__image">
+
+  <%= image_tag(@user.profile_image.url, class: "user-box__image profile-image", size: "150") do %>
   <% if current_user?(@user) %>
     <%= link_to image_tag("pen.svg", class: "user-box__edit--image"), edit_user_registration_path,class: "user-box__edit" %>
     <% end %>
-  </div>
+<% end %>
   <p class="user-name"><%= @user.name %></p>
   <%= render 'users/stats' %>
-  <%= render 'users/follow_button' %>
+  <%= render 'users/follow_button', user: @user %>
   </div>
   <div class="profile-box">
   <%= @user.profile %>
   </div>
   <%= render 'users/user_link' %>
 </div>
+
 <style>
-  .user-box__image {
-    background-image: url("<%= @user.profile_image.url %>");
-  }
-  .user-canopy {
+.user-canopy {
     background-image: url("<%= @user.profile_image.url %>");
   }
 </style>

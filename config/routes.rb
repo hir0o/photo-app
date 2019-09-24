@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'home#index'
   devise_for :users
-  resources :users, only: [:show] do
+  resources :users, only: %i[index show] do
     resources :likes, only: [:index]
     member do
       get :following, :followers

@@ -1,5 +1,5 @@
 <div class="container">
-<div class="box">
+<div class="box form">
 <h2>ユーザー情報編集</h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -37,11 +37,7 @@
   </div>
 <% end %>
 
-<h3>アカウントの削除</h3>
-
-<p><%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete %></p>
-<!--
-<%= link_to "Back", :back %>
--->
+<p class="tac"><%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: "account-delete-btn" %></p>
+<%= link_to "戻る", :back %>
 </div>
 </div>

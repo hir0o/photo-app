@@ -2,10 +2,10 @@ class PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
     @posts = @q.result(distinct: true)
+    @posts = Post.all
     if params[:tag_name]
       @posts = @posts.tagged_with("#{params[:tag_name]}")
     end
-    @posts = Post.all
   end
 
   def new

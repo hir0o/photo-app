@@ -1,4 +1,6 @@
-<h1>投稿フォーム</h1>
+<div class="container">
+<div class="box form">
+<h2>投稿フォーム</h2>
 <% if @post.errors.any? %>
 <div id="error_explanation">
   <div class="alert alert-danger">
@@ -11,9 +13,19 @@
 </div>
 <% end %>
 
-<%= form_for(@post) do |f| %>
+<%= form_for(@post, class: "form") do |f| %>
   <%= f.text_field :title, placeholder: "タイトル" %>
-  <%= f.file_field :picture %>
-  <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", placeholder: "タグ" %>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", placeholder: "タグを入れる&quot; , &quot;で分けてください。)" %>
+  <div class="file-picture-con">
+    <label for="file-picture" class="file-picture__label">
+      写真を選択
+      <%= f.file_field :picture, class: "file-picture", id: "file-picture" %>
+    </label>
+  </div>
+  <div class="actions">
+    <%= f.submit "投稿", class: "btn btn-primary" %>
+  </div>
 <% end %>
+
+</div>
+</div>
