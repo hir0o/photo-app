@@ -2,8 +2,8 @@
   <div class="user-box">
 
     <%= image_tag(@user.profile_image.url, class: "user-box__image profile-image", size: "150") do %>
-    <% if current_user?(@user) %>
-      <%= link_to image_tag("pen.svg", class: "user-box__edit--image"), edit_user_registration_path,class: "user-box__edit" %>
+      <% if current_user?(@user) %>
+        <%= link_to image_tag("pen.svg", class: "user-box__edit--image"), edit_user_registration_path,class: "user-box__edit" %>
       <% end %>
     <% end %>
   <p class="user-name"><%= @user.name %></p>

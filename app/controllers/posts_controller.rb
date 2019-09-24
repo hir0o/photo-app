@@ -37,9 +37,8 @@ class PostsController < ApplicationController
   private
   
     def posts_params
-      params.require(:post).permit(:title, :tag_list, :picture)
+      params.require(:post).permit(:title, :tag_list, {pictures: []})
     end
-
   # def microposts_current_user
   #   @micropost = current_user.microposts.find_by(id: params[:id])
   #   redirect_to root_url if @micropost.nil?

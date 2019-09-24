@@ -1,8 +1,10 @@
-<div class="post-show-container">
+<div class="post-show-container container">
 <h2>
 <%= @post.title %>
 </h2>
-<%= image_tag @post.picture.url, class: "post-picture" %>
+<% @post.pictures.each do |picture| %>
+  <%= image_tag picture.url, class: "post-picture" %>
+<% end %>
 <div class="post-footer">
 <div class="post-footer__content">
 <div class="post-footer__content__comment">
