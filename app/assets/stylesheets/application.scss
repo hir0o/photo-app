@@ -30,6 +30,23 @@ h3 {
 .dn {
   display: none;
 }
+.alert {
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  width: 100%;
+  z-index: 100;
+  &__info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
+  &__danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
+}
 .form input:not([type="submit"]):not([type="checkbox"]) {
     width: 100%;
     border: none;
