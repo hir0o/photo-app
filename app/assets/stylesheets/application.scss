@@ -36,12 +36,12 @@ h3 {
   border-radius: 4px;
   width: 100%;
   z-index: 100;
-  &__info {
+  &-info {
     color: #31708f;
     background-color: #d9edf7;
     border-color: #bce8f1;
   }
-  &__danger {
+  &-danger {
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
@@ -59,10 +59,9 @@ h3 {
     box-shadow: unset;
 }
 header {
-  border-bottom: 1px solid #707070;
-  // position: fixed;
+  color: #fff;
   z-index: 100;
-  background-color: rgba($color: #fff, $alpha: .6);
+  background-color: rgba($color: #000, $alpha: .6);
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -71,17 +70,20 @@ header {
   height: 50px;
 }
 
+.header-logo a {
+  color: #ffffff;
+}
+
 .header-list {
   display: flex; 
+  &__item a {
+    color: #fff;
+  }
+  &__item + &__item {
+    margin-left: 1rem;
+  }
 }
 
-.header-list__item  + .header-list__item  {
-  margin-left: 1rem;
-}
-
-.header-list__item a {
-  color: #333;
-}
 
 .hero {
   // background-image: url("<%= asset-path('"top.png") %>");
@@ -307,12 +309,11 @@ font-size: 1rem;
 
 
 
-// post関係
+// 関係
 .post-list {
   display: flex;
   flex-wrap: wrap;
   padding: 0 2rem;
-  
 }
 
 .post-image {
@@ -320,16 +321,42 @@ font-size: 1rem;
   padding-bottom: 100%;
   background-position: center;
   background-size: cover; 
+  position: relative;
 }
 
-.post-list__item {
+.hover {
+  width: calc(100% - 1rem);
+  height: 100px;
+  background: linear-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 100%);
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  color: #fff;
+}
+.post-list__item:hover > .hover {
+  opacity: 1;
+}
+// .post-list__item {
+//   padding: .5rem;
+// }
+
+// .post-link {
+//   width: 25%;
+//   display: block;
+// }
+
+.post-liml {
   padding: .5rem;
 }
 
-.post-link {
+.post-list__item {
   width: 25%;
   display: block;
+  box-sizing: border-box;
+  padding: 0 .5rem;
+  position: relative;
 }
+
 
 .post-picture {
   width: 100%;
@@ -467,7 +494,7 @@ li.menu__single ul.menu-level {
   position: absolute;
   top: 45px;
   padding: .5rem;
-  background-color: rgb(255,255,255);
+  background-color: rgba(0,0,0,0.6); 
   -webkit-transition: all .2s ease;
   transition: all .2s ease;
 }

@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     if params[:tag_name]
       @posts = @posts.tagged_with("#{params[:tag_name]}")
+      @tag_name = params[:tag_name]
     end
   end
 

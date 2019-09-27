@@ -41,7 +41,7 @@
   <div class="post-activity">
     <ul class="activity-list">
       <li class="activity-list__item"><%= image_tag 'comment.svg', class: "comment-icon" %><%= @comments.count %></li>
-      <li class="activity-list__item"><%= render 'likes/like_button' %><%= @post.likes.count %></li>
+      <li class="activity-list__item"><%= render 'likes/like_button', post: @post %><%= @post.likes.count %></li>
     </ul>
   </div>
   <div class="post-tags">
