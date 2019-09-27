@@ -1,15 +1,19 @@
 <div class="users-box">
 <div class="flex">
-  <%= image_tag user.profile_image.url, class: "profile-image", size: "150" %>
+  <%= image_tag user.profile_image.url, class: "profile-image", size: "100" %>
   <div class="users-box__profile">
-  <p>
+
+  <p class="users-box__profile__user-name">
   <%= user.name %>
+  <%= render 'users/follow_button', user: user %>
   </p>
-  </div>
 </div>
+  </div>
   <div class="users-box__posts">
-  <% user.posts.each do |post| %>
-    <%= image_tag post.pictures[0].url, class: "users-box__post-picture", size: "150" %>
+  <% user.posts.first(4).each do |post| %>
+  <%= link_to(post, class: "users-box__posts__link") do %>
+    <%= image_tag post.pictures[0].url, class: "users-box__posts__picture" %>
+  <% end %>
   <% end %>
   </div>
 </div>

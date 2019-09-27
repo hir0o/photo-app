@@ -73,6 +73,9 @@ header {
   padding: .5rem 5rem;
   align-items: center;
   height: 50px;
+  @include mq {
+    padding: 0.5rem 1rem;
+  }
 }
 
 .header-logo a {
@@ -109,6 +112,9 @@ header {
   font-family: 'Comfortaa', cursive;
   padding: 2rem;
   color: #ffffff;
+  @include mq {
+    font-size: 10vw;
+  }
 }
 
 .app-title::before, .app-title::after {
@@ -181,7 +187,7 @@ h2 {
 }
 
 .container {
-  padding: 5rem 0;
+  padding: 2rem 0;
 }
 
 .file-picture {
@@ -320,6 +326,7 @@ input[type="submit"].follow-btn {
   border: none;
   color: #fff;
   border-radius: 20px;
+  font-size: 0.7rem;
   &__on {
     background: #fff;
     border: 1px solid #333333;
@@ -396,6 +403,24 @@ input[type="submit"].follow-btn {
   }
 }
 
+.comment-box {
+  display: flex;
+  .post-comment {
+    border: 1px solid #E9EAED;
+    border-radius: .5rem;
+    padding: 0.5rem;
+    width: 90%;
+    height: 60px;
+    margin-left: 2rem;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    font-size: 1rem;
+  }
+  .new_comment {
+    width: 90%;
+  }
+}
+
 .post-user {
   display: flex;
   padding: 2rem;
@@ -408,7 +433,7 @@ input[type="submit"].follow-btn {
 }
 
 .post-activity {
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 1rem;
   background: #fff;
   border: 1px solid #C2C6D0;
@@ -433,14 +458,15 @@ input[type="submit"].follow-btn {
 }
 
 .post-tags {
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 1rem;
   background: #fff;
   border: 1px solid #C2C6D0;
-  .tag-con {
+  margin-bottom: 1rem;
+  &__con {
     margin-top: 1rem;
   }
-  .tag-link {
+  &__link {
     border: 1px solid #008DC7;
     border-radius: .25rem;
     padding: .25rem 0.5rem;
@@ -509,8 +535,8 @@ li.menu__single:hover ul.menu-level {
 //  show
 
 .post-show-container {
-  min-width: 1000px;
-  width: 70%;
+  max-width: 1000px;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -518,9 +544,15 @@ li.menu__single:hover ul.menu-level {
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+
   &__content {
     flex-basis: calc(50% - 1rem);
     align-self: flex-start;
+    @include mq {
+      flex-basis: 100%;
+    }
     &__comment {
       padding: 2rem;
       background: #fff;
@@ -548,22 +580,45 @@ input[type="submit"].account-delete-btn {
   width: 90%;
   padding: 1rem 2rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, .15);
+  text-align: center;
   display: flex;
   justify-content: space-between;
-  &__profile {
-    margin-left: 2rem;
+  align-items: center;
+  @include mq {
+    display: block;
   }
-  &__post-picture {
-    object-fit: cover;
+  &__profile {
+    text-align: left;
+    margin-left: 1rem;
+    @include mq {
+      display: block;
+      text-align: center;
+      margin: 0;
+    }
+  }
+  &__posts {
+    overflow: scroll;
+    height: 120px;
+    display: flex;
+    margin-top: 1rem;
+    &__link + &__link {
+      margin-left: 1rem;
+    }
+    &__picture {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  @include mq {
+    display: block;
   }
 }
 
 .users-box + .users-box {
   margin-top: 2rem;
 }
-
-.flex {
-  display: flex;
-  justify-content: flex-start;
-}
-
