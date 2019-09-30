@@ -13,7 +13,10 @@ class Post < ApplicationRecord
   has_many :comments
   # tag
   acts_as_taggable
-
+  # 足跡機能
+  has_many :footprints
+  has_many :footprint_users, through: :footprints, source: :user
+  
   def self.search(search) #ここでのself.はMicropost.を意味する
     where(['title LIKE ?', "%#{search}%"])
   end

@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :followers, through: :follower_relationships
   # comment
   has_many :comments
+  # 足跡関係
+  has_many :footprints, dependent: :destroy
+  has_many :footprint_posts, through: :footprints, source: :post
  
    def following?(other_user)
      following_relationships.find_by(following_id: other_user.id)

@@ -12,6 +12,7 @@
   <ul class="hover-stats__list">
     <li class="hover-stats__list__item"><%= image_tag 'comment_hw.svg', class: "icon" %><%= post.comments.count %></li>
     <li class="hover-stats__list__item"><%=  image_tag 'good_hw.svg', class: "icon" %><%= post.likes.count %></li>
+    <li class="hover-stats__list__item"><%= image_tag 'eye_hw.svg', class: "icon eye-icon" %><%= post.footprints.count %></li>
   </ul>
 </div>
 </li>

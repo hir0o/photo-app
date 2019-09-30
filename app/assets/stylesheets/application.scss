@@ -465,6 +465,9 @@ input[type="submit"].follow-btn {
         width: 20px;
         margin-right: 0.5rem;
       }
+      .eye-icon {
+        width: 30px;
+      }
     }
     &__item + &__item {
       margin-left: .5rem;
@@ -477,9 +480,6 @@ input[type="submit"].follow-btn {
 
 .post-picture {
   width: 100%;
-}
-.post-picture + .post-picture {
-  // margin-top: 1rem;
 }
 
 .picture-btn {
@@ -549,6 +549,9 @@ input[type="submit"].follow-btn {
   &__item {
     font-size: 1.5rem;
     display: inline-block;
+    & + & {
+      margin-left: 2rem;
+    }
     .good-icon {
       width: 20px;
     }
@@ -556,9 +559,10 @@ input[type="submit"].follow-btn {
       width: 25px;
       margin-right: 0.3rem;
     }
-  }
-  &__item +  &__item {
-    margin-left: 2rem;
+    .eye-icon {
+      width: 40px;
+      margin-right: 0.4rem;
+    }
   }
 }
 
@@ -576,6 +580,37 @@ input[type="submit"].follow-btn {
   &__link {
     color: #ffffff;
   }
+}
+
+.footprint {
+  position: relative;
+  &-lavel {
+  max-height: 251px;
+  overflow: scroll;
+  border-radius: .5rem;
+  display: none;
+  position: absolute;
+  top: 30px;
+  background: #333;
+    &__list {
+      padding: 0.25rem .5rem;
+      &--link {
+        display: flex;
+        align-items: center;
+        .user-name {
+          color: #ffffff;
+          font-size: 1rem;
+        }
+        .profile-image {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+.footprint:hover > .footprint-lavel {
+  display: block;
 }
 
 // .arrow_box:after {
@@ -661,7 +696,6 @@ li.menu__single ul.menu-level {
 }
 
 li.menu__single:hover ul.menu-level {
-  top: 45px;
   visibility: visible;
   opacity: 1;
 }

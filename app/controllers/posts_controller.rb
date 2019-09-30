@@ -16,8 +16,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    current_user.footprints.create(post_id: @post.id)
     @like = Like.new
-    @comments = @post.comments
     @comment = Comment.new
   end
 

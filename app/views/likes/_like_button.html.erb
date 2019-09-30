@@ -4,16 +4,16 @@
       <%= link_to(post_like_path(@post), method: :delete) do %>
         <%=  image_tag 'gooded.svg', class: "good-icon" %>
       <% end %>
-    </span>
     <p class="arrow_box">いいねを外す</p>
+    </span>
   <% else %>
   <span>
     <%= link_to(post_likes_path(@post), method: :post) do %>
       <%=  image_tag 'good.svg', class: "good-icon" %>
     <% end %>
   <% end %>
-    </span>
     <p class="arrow_box">いいね！</p>
+    </span>
 <% else %>
   <span>
   <%= image_tag 'gooded.svg', class: "good-icon" %>

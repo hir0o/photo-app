@@ -18,8 +18,20 @@
   </div>
   <div class="post-activity">
     <ul class="activity-list">
-      <li class="activity-list__item"><%= image_tag 'comment.svg', class: "comment-icon" %><%= @comments.count %></li>
+      <li class="activity-list__item"><%= image_tag 'comment.svg', class: "comment-icon" %><%= @post.comments.count %></li>
       <li class="activity-list__item"><%= render 'likes/like_button', post: @post %><%= @post.likes.count %></li>
+      <li class="activity-list__item footprint">
+        <%= image_tag 'eye.svg', class: "eye-icon" %><%= @post.footprints.count %>
+        <ul class="footprint-lavel">
+          <% @post.footprint_users.each do |user| %>
+            <li class="footprint-lavel__list"><span>
+              <%= link_to(user, class: "footprint-lavel__list--link") do %>
+                <%= image_tag user.profile_image.url, class: "profile-image", size: "25" %><span class="user-name"><%= user.name %></span>
+              <% end %>
+              </span></li>
+          <% end %>
+        </ul>  
+      </li>
     </ul>
   </div>
   <div class="post-tags">
@@ -46,7 +58,7 @@
   </div>
   <% end %>
 </div>
-<% @comments.each do |c| %>
+<% @post.comments.each do |c| %>
   <div class="comment-list">
   <%= image_tag c.user.profile_image.url, class: "profile-image", size: "50" %>
     <div class="comment-list__item">
