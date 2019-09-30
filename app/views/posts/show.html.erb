@@ -2,9 +2,11 @@
 <h2>
 <%= @post.title %>
 </h2>
+<div class="picture-con">
 <% @post.pictures.each do |picture| %>
   <%= image_tag picture.url, class: "post-picture" %>
 <% end %>
+</div>
 <div class="post-footer">
 <div class="post-footer__content">
   <div class="post-user">
@@ -32,13 +34,18 @@
 <div class="post-footer__content">
 <div class="post-footer__content__comment">
 <div class="comment-box">
-  <%= image_tag current_user.profile_image.url, class: "profile-image", size: "80" %>
-      <%= form_for [@post, @comment] do |f| %>
+  <% if user_signed_in? %>
+    <%= image_tag current_user.profile_image.url, class: "profile-image", size: "80" %>
+    <%= form_for [@post, @comment] do |f| %>
       <%= f.text_field :content, placeholder: "コメントを残す", class: "post-comment", rows: "1" %>
       <%= f.submit class: "dn" %>
     <% end %>
+  <% else %>
+  <div class="request-login">
+    <%= link_to "ログインしてコメントを残す。", user_session_path , class: "request-login__link" %>
+  </div>
+  <% end %>
 </div>
-
 <% @comments.each do |c| %>
   <div class="comment-list">
   <%= image_tag c.user.profile_image.url, class: "profile-image", size: "50" %>

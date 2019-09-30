@@ -4,7 +4,7 @@
   <div class="users-box__profile">
 
   <p class="users-box__profile__user-name">
-  <%= user.name %>
+  <%= link_to user.name, user %>
   <%= render 'users/follow_button', user: user %>
   </p>
 </div>

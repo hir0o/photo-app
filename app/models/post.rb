@@ -8,11 +8,19 @@ class Post < ApplicationRecord
   validates  :title, presence: true, length: { maximum: 140 }
   # like関係
   has_many   :likes
-  has_many   :liked_users, through: :likes, source: :user
+  has_many   :liked_users, through: :likes, source: :user, dependent: :destroy
   # comment
   has_many :comments
   # tag
   acts_as_taggable
+
+  def self.search(search) #ここでのself.はMicropost.を意味する
+    where(['title LIKE ?', "%#{search}%"])
+  end
+
+  def self.tag_search(tag_name) #ここでのself.はMicropost.を意味する
+    tagged_with("#{tag_name}")
+  end
 
 
 end

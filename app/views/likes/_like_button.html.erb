@@ -1,9 +1,22 @@
-<% if current_user.already_liked?(@post) %>
-  <%= link_to(post_like_path(@post), method: :delete) do %>
-    <%=  image_tag 'gooded.svg', class: "good-icon" %>
+<% if user_signed_in? %>
+  <% if current_user.already_liked?(@post) %>
+    <span>
+      <%= link_to(post_like_path(@post), method: :delete) do %>
+        <%=  image_tag 'gooded.svg', class: "good-icon" %>
+      <% end %>
+    </span>
+    <p class="arrow_box">いいねを外す</p>
+  <% else %>
+  <span>
+    <%= link_to(post_likes_path(@post), method: :post) do %>
+      <%=  image_tag 'good.svg', class: "good-icon" %>
+    <% end %>
   <% end %>
+    </span>
+    <p class="arrow_box">いいね！</p>
 <% else %>
-  <%= link_to(post_likes_path(@post), method: :post) do %>
-    <%=  image_tag 'good.svg', class: "good-icon" %>
-  <% end %>
+  <span>
+  <%= image_tag 'gooded.svg', class: "good-icon" %>
+  <p class="arrow_box"><%= link_to "いいねするにはログインが必要です。", user_session_path, class: "arrow_box__link" %></p>
+  </span>
 <% end %>

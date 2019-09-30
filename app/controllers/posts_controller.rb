@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: %i[create. destroy, new]
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true)
-    @posts = Post.all
-    if params[:tag_name]
-      @posts = @posts.tagged_with("#{params[:tag_name]}")
-      @tag_name = params[:tag_name]
+    if @tag_name = params[:tag_name]
+      @posts = Post.tag_search(params[:tag_name])
+    elsif @search = params[:search]
+      @posts = Post.search(params[:search])
+    else
+      @posts = Post.all
     end
   end
 

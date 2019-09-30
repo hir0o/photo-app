@@ -2,14 +2,15 @@
     <div class="header-logo"><%= link_to "PHOTO APP", root_path %></div>
     <div class="header-menu">
       <ul class="header-list">
+          <li class="header-list__item"><%= link_to '全てのユーザー', users_path %></li>
         <% unless current_user %>
+          <li class="header-list__item"><%= link_to "トップ", root_path %></li>
           <li class="header-list__item"><%= link_to 'ログイン', new_user_session_path %></li>
           <li class="header-list__item"><%= link_to "会員登録", new_user_registration_path%></li>
         <% else %>
           <li class="header-list__item menu__single">
-            <a href="#" class="init-bottom"><%= current_user.name %></a>
+            <%= link_to current_user.name, current_user, class: "init-button" %>
             <ul class="menu-level">
-                <li class="menu-lavel__item"><%= link_to "トップ", root_path %></li>
                 <li class="menu-lavel__item"><%= link_to "ユーザーページ", current_user %></li>
                 <!--<li class="menu-lavel__item"><a href="#">送受信メッセージ</a></li>-->
                 <li class="menu-lavel__item"><%= link_to "各種設定", edit_user_registration_path %></li>
