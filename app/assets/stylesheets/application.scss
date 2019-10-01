@@ -92,6 +92,16 @@ header {
   }
 }
 
+.search{
+  width: 95%;
+  max-width: 900px;
+  margin: 0 auto;
+  &__item {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+}
 
 .hero {
   // background-image: url("<%= asset-path('"top.png") %>");
@@ -389,16 +399,16 @@ input[type="submit"].follow-btn {
 
 
 // post関係
-.picture-con {
-  column-count: 2;
-  column-gap: 0px;
-  img {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.5rem;
-    height: auto;
-  }
-}
+// .picture-con {
+//   column-count: 2;
+//   column-gap: 0px;
+//   img {
+//     width: 100%;
+//     box-sizing: border-box;
+//     padding: 0.5rem;
+//     height: auto;
+//   }
+// }
 .post-list {
   display: flex;
   flex-wrap: wrap;
@@ -564,6 +574,10 @@ input[type="submit"].follow-btn {
       margin-right: 0.4rem;
     }
   }
+}
+
+#like_form {
+  display: inline;
 }
 
 .arrow_box {

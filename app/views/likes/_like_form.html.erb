@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <div id="like_form">
+    <% if current_user.already_liked?(@post) %>
+      <%= render 'likes/unlike' %>
+    <% else %>
+      <%= render 'likes/like' %>
+    <% end %>
+  </div>
+<% else %>
+  <span>
+  <%= image_tag 'gooded.svg', class: "good-icon" %>
+  <p class="arrow_box"><%= link_to "いいねするにはログインが必要です。", user_session_path, class: "arrow_box__link" %></p>
+  </span>
+<% end %>

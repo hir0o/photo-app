@@ -1,14 +1,32 @@
 class LikesController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   def create
     @like = current_user.likes.create(post_id: params[:post_id])
-    redirect_back(fallback_location: root_path)
+    @post = Post.find(params[:post_id])
+    p "**controller**  "*10
+    p "create"
+    p @like
+    p @post
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      p "〜"*50
+      format.js
+    end
   end
 
   def destroy
     @like = Like.find_by(post_id: params[:post_id], user_id: current_user.id)
+    @post = Post.find(params[:post_id])
+    p "**controller** "*10
+    p "destroy"
+    p @like
+    p @post
     @like.destroy
-    redirect_back(fallback_location: root_path)
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+      p "〜"*50
+      format.js
+    end
   end
 
   def index

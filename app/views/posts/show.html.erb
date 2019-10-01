@@ -10,16 +10,16 @@
 <div class="post-footer">
 <div class="post-footer__content">
   <div class="post-user">
-  <%= image_tag @post.user.profile_image.url, class: "profile-image", size: "100" %>
+  <%= image_tag @user.profile_image.url, class: "profile-image", size: "100" %>
     <div class="post-user__profie">
-      <%= link_to @post.user.name, @post.user %>
-      <%= render 'users/follow_button', user: @post.user %>
+      <%= link_to @user.name, @user %>
+      <%= render 'users/follow_form', user: @user %>
     </div>
   </div>
   <div class="post-activity">
     <ul class="activity-list">
       <li class="activity-list__item"><%= image_tag 'comment.svg', class: "comment-icon" %><%= @post.comments.count %></li>
-      <li class="activity-list__item"><%= render 'likes/like_button', post: @post %><%= @post.likes.count %></li>
+      <li class="activity-list__item"><%= render'likes/like_form' %><%= @post.likes.count %></li>
       <li class="activity-list__item footprint">
         <%= image_tag 'eye.svg', class: "eye-icon" %><%= @post.footprints.count %>
         <ul class="footprint-lavel">
@@ -72,22 +72,3 @@
 </div>
 </div>
 </div>
-
-
-
-<!-- 
-
-<% @post.liked_users.each do |user| %>
-  <li><%= user.email %></li>
-<% end %>
-
-
-<%= render 'likes/like_button' %>
-<%= @post.likes.count %>
-<% @post.tag_list.each do |tag| %>
-  <p>
-  <%= link_to tag, posts_path(tag_name: tag), class: "text-white" %>
-  </p>
-<% end %>
-
->

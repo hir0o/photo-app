@@ -1,8 +1,10 @@
-  <p>検索</p>
-<%= form_tag(posts_path,:method => 'get') do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag '検索', :name => nil %>
-<% end %>
+      <div class="search">
+      <%= form_tag(posts_path,:method => 'get') do %>
+        <%= text_field_tag :search,"", placeholder: "キーワードで検索", class: "search__item" %>
+        <%# <%= submit_tag '検索', :name => nil %>
+      <% end %>
+    </div>
+  
   <% if @tag_name %>
     <%= render 'posts/feed', title: @tag_name %>
   <% elsif @search %>

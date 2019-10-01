@@ -1,0 +1,12 @@
+      <%
+    p "="*100
+    p @post
+    p "like"
+    link_to(post_likes_path(@post), method: :post, remote: true)
+    %>
+  <span>
+    <%= link_to(post_likes_path(@post), method: :post, remote: true) do %>
+      <%=  image_tag 'good.svg', class: "good-icon" %>
+    <% end %>
+    <p class="arrow_box">いいね！</p>
+    </span>
