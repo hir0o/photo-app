@@ -1,8 +1,10 @@
   <% @post.comments.each do |c| %>
   <div class="comment-list">
     <%= image_tag c.user.profile_image.url, class: "profile-image",size: "50" %>
-    <div class="comment-list__item">
-      <%= link_to c.user.name, c.user, class:"comment-list__item__user-name" %>
+    <div class="comment-list--item">
+      <%= link_to c.user.name, c.user, class:"comment-list--item__user-name" %>
+      <span class="comment-list--item__date"><%= c.created_at.strftime("%m月%d日 %H:%M") %></span>
+      <%= render 'comments/edit' if current_user?(c.user) %>
       <p><%= c.content %></p>
     </div>
   </div>

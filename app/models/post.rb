@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   mount_uploaders :pictures, PictureUploader
   validates  :pictures, presence: true, length: { maximum: 3 }
   validates  :user_id, presence: true
-  validates  :title, presence: true, length: { maximum: 140 }
+  validates  :title, presence: true, length: { maximum: 50 }
   # like関係
   has_many   :likes
   has_many   :liked_users, through: :likes, source: :user, dependent: :destroy

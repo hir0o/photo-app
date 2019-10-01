@@ -1,6 +1,4 @@
-<%
-      p "create js"*100
-%>
-
 $("#comments_area").html("<%= j(render 'index') %>")
+$("#flash-con").html("<%= j(render 'layouts/flash') %>")
+$("#comment-error").html("<%= j(render 'comments/error_message') %>")
 $("input").val('')

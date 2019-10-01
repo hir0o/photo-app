@@ -5,11 +5,13 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     respond_to do |format|
       if @comment.save
+        flash.now[:success] = "コメントを投稿しました。"
         format.html { redirect_back(fallback_location: root_path) }
         format.js
       else
-        
+        flash.now[:danger] = "失敗しました。"
         format.html { redirect_back(fallback_location: root_path) }
+        format.js
       end
     end
   end

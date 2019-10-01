@@ -36,11 +36,18 @@ h3 {
   display: none;
 }
 .alert {
+  position: fixed;
+  top: .5rem;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 15px;
   border: 1px solid transparent;
   border-radius: 4px;
-  width: 100%;
+  width: 90%;
   z-index: 100;
+  opacity: 0;
+  animation: 2s fadein;
+  visibility: hidden;
   &-info {
     color: #31708f;
     background-color: #d9edf7;
@@ -51,7 +58,37 @@ h3 {
     background-color: #f2dede;
     border-color: #ebccd1;
   }
+  &-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+  &-warning{
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+
+  }
 }
+
+@keyframes fadein {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.error-message {
+  color: #DD0000;
+  font-size: 1rem;
+}
+
 .form input:not([type="submit"]):not([type="checkbox"]) {
     width: 100%;
     border: none;
@@ -201,6 +238,11 @@ h2 {
 }
 
 // post new
+
+.errors-list {
+  color: #d00;
+  margin-bottom: 2rem;
+}
 .file-picture {
   display: none;
 }
@@ -498,12 +540,22 @@ input[type="submit"].follow-btn {
 
 .comment-list {
   display: flex;
+  position: relative;
   padding: 1rem 0 0;
   margin-left: 1rem;
   margin-top: 1rem;
   border-top: 1px solid #E9EAED;
-  &__item {
+  &--item {
     margin-left: 1rem;
+    word-break: break-all;
+    &__edit {
+      position: absolute;
+      right: 0;
+      font-size: .75rem;
+    }
+    &__date {
+      font-size: 0.75rem;
+    }
     &__user-name {
       color: #008dc7;
     }

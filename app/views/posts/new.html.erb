@@ -1,16 +1,20 @@
 <div class="container">
 <div class="box form">
 <h2>投稿フォーム</h2>
+
+
 <% if @post.errors.any? %>
 <div id="error_explanation">
   <div class="alert alert-danger">
      The form contains <%=  pluralize(@post.errors.count, "error")%>
   </div>
-  <ul>
+  <ul class="post-error">
   <% @post.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
   <% end %>
 </div>
+
+
 <% end %>
 
 <%= form_for(@post, class: "form") do |f| %>
