@@ -70,5 +70,6 @@ gem 'mini_magick',   '4.7.0'
 gem 'ransack'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'jquery-rails',   '~> 4.3'
+gem 'kaminari', '~> 0.17'
 # 本番環境で使う?
 # gem 'fog'

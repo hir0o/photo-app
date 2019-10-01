@@ -576,6 +576,13 @@ input[type="submit"].follow-btn {
   }
 }
 
+#more_link {
+  display: block;
+  max-width: 400px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
 #like_form {
   display: inline;
 }
@@ -758,6 +765,60 @@ input[type="submit"].account-delete-btn {
   display: block;
   border: none;
   margin: 1.5rem auto;
+}
+
+// show　モーダル
+
+
+.modal-dialog {
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: none;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: none;
+}
+
+.modal-content {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  background: #F4F4F7;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: .25rem;
+  right: .25rem;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 6;
+  .batsu {
+    position: absolute;
+    top: 20px;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 30px;
+    height: 5px;
+    background: #333333;
+    &:before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      -moz-transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+      background: #333333;
+    }
+  }
 }
 
 

@@ -2,11 +2,15 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create. destroy, new]
   def index
     if @tag_name = params[:tag_name]
-      @posts = Post.tag_search(params[:tag_name])
+      @posts = Post.tag_search(params[:tag_name]).page(params[:page]).per(PER)
     elsif @search = params[:search]
-      @posts = Post.search(params[:search])
+      @posts = Post.search(params[:search]).page(params[:page]).per(PER)
     else
-      @posts = Post.all
+      @posts = Post.page(params[:page]).per(PER)
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -20,6 +24,10 @@ class PostsController < ApplicationController
     current_user.footprints.create(post_id: @post.id)
     @like = Like.new
     @comment = Comment.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

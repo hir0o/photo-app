@@ -1,10 +1,3 @@
-    <%
-    p "="*100
-    p @post
-     p "unlike"*100
-     link_to root_path
-    %>
-    
     <span>
       <%= link_to(post_like_path(@post), method: :delete, remote: true) do %>
         <%=  image_tag 'gooded.svg', class: "good-icon" %>

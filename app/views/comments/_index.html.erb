@@ -1,0 +1,9 @@
+  <% @post.comments.each do |c| %>
+  <div class="comment-list">
+    <%= image_tag c.user.profile_image.url, class: "profile-image",size: "50" %>
+    <div class="comment-list__item">
+      <%= link_to c.user.name, c.user, class:"comment-list__item__user-name" %>
+      <p><%= c.content %></p>
+    </div>
+  </div>
+  <% end %>

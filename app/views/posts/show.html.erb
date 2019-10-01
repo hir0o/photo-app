@@ -1,7 +1,15 @@
+
+<div class="modal-dialog">
+<div class="modal-content">
+
+
 <div class="post-show-container container">
 <h2>
 <%= @post.title %>
 </h2>
+<div id="close-modal">
+<h1>aaaaa</h1>
+</div>
 <div class="picture-con">
 <% @post.pictures.each do |picture| %>
   <%= image_tag picture.url, class: "post-picture" %>
@@ -70,5 +78,8 @@
 
 </div>
 </div>
+</div>
+</div>
+
 </div>
 </div>

@@ -12,7 +12,7 @@
   </div>
   <div class="users-box__posts">
   <% user.posts.first(4).each do |post| %>
-  <%= link_to(post, class: "users-box__posts__link") do %>
+  <%= link_to(post, class: "users-box__posts__link", remote: true,) do %>
     <%= image_tag post.pictures[0].url, class: "users-box__posts__picture" %>
   <% end %>
   <% end %>
