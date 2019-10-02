@@ -1,0 +1,4 @@
+$("#comments_area").html("<%= escape_javascript(render 'index') %>")
+$("#flash-con").html("<%= escape_javascript(render 'layouts/flash') %>")
+$("#comment-error").html("<%= escape_javascript(render 'comments/error_message') %>")
+$("input").val('')

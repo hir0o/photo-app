@@ -23,8 +23,8 @@
               <li class="activity-list__item">
                 <%= image_tag 'comment.svg', class: "comment-icon" %><%=@post.comments.count %>
               </li>
-              <li class="activity-list__item">
-                <%= render'likes/like_form' %><%= @post.likes.count %>
+              <li class="activity-list__item" id="like_form">
+                <%= render'likes/like_form' %>
               </li>
               <li class="activity-list__item footprint">
                 <%= image_tag 'eye.svg', class: "eye-icon" %><%=@post.footprints.count %>

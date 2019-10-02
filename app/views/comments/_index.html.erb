@@ -1,10 +1,17 @@
+  <%
+  p "comments/_index.erb"*100
+  p @post.comments
+  %>
+  
   <% @post.comments.each do |c| %>
-  <div class="comment-list">
+  <%@c = c%>
+  <% p c.content%>
+  <div class="comment-list" id="comment-list-<%= c.id %>">
     <%= image_tag c.user.profile_image.url, class: "profile-image",size: "50" %>
     <div class="comment-list--item">
       <%= link_to c.user.name, c.user, class:"comment-list--item__user-name" %>
       <span class="comment-list--item__date"><%= c.created_at.strftime("%m月%d日 %H:%M") %></span>
-      <%= render 'comments/edit' if current_user?(c.user) %>
+      <%= link_to "編集", edit_post_comment_path(c), method: :get, class: "comment-list--item__edit", remote: true %>
       <p><%= c.content %></p>
     </div>
   </div>

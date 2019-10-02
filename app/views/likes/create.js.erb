@@ -1,2 +1,1 @@
- $("#like_form").html("<%= escape_javascript(render('likes/unlike')) %>");
- 
+$('#like_form').html("<%= j(render partial: 'likes/like_form') %>");

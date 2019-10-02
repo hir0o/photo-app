@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   has_many   :likes
   has_many   :liked_users, through: :likes, source: :user, dependent: :destroy
   # comment
-  has_many :comments
+  has_many :comments, dependent: :destroy
   # tag
   acts_as_taggable
   # 足跡機能

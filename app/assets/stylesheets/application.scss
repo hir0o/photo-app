@@ -658,12 +658,14 @@ input[type="submit"].follow-btn {
 .footprint {
   position: relative;
   &-lavel {
-  max-height: 251px;
+  max-height: 250px;
   overflow: scroll;
   border-radius: .5rem;
   display: none;
   position: absolute;
   top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #333;
     &__list {
       padding: 0.25rem .5rem;
@@ -673,6 +675,7 @@ input[type="submit"].follow-btn {
         .user-name {
           color: #ffffff;
           font-size: 1rem;
+          white-space: nowrap;
         }
         .profile-image {
           margin-right: 0.5rem;

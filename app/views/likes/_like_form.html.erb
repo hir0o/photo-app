@@ -1,11 +1,21 @@
 <% if user_signed_in? %>
-  <div id="like_form">
     <% if current_user.already_liked?(@post) %>
-      <%= render 'likes/unlike' %>
+    <span>
+      <%= link_to(post_like_path(@post), method: :delete, remote: true) do %>
+        <%=  image_tag 'gooded.svg', class: "good-icon" %>
+      <% end %>
+      <p class="arrow_box">いいねを外す</p>
+    </span>
+    <%= @post.likes.count %>
     <% else %>
-      <%= render 'likes/like' %>
+    <span>
+      <%= link_to(post_likes_path(@post), method: :post, remote: true) do %>
+        <%=  image_tag 'good.svg', class: "good-icon" %>
+      <% end %>
+      <p class="arrow_box">いいね！</p>
+    </span>
+    <%= @post.likes.count %>
     <% end %>
-  </div>
 <% else %>
   <span>
   <%= image_tag 'gooded.svg', class: "good-icon" %>
