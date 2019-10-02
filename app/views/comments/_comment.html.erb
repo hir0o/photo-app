@@ -1,0 +1,9 @@
+  <div class="comment-list" id="comment-list-<%= comment.id %>">
+    <%= image_tag comment.user.profile_image.url, class: "profile-image",size: "50" %>
+    <div class="comment-list--item">
+      <%= link_to comment.user.name, comment.user, class:"comment-list--item__user-name" %>
+      <span class="comment-list--item__date"><%= comment.created_at.strftime('%m月%d日') %></span>
+      <%= link_to "編集", edit_post_comment_path(id: comment.id, post_id: comment.post.id), method: :get, class: "comment-list--item__edit", remote: true %>
+      <p><%= comment.content %></p>
+    </div>
+  </div>

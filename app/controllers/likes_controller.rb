@@ -14,9 +14,14 @@ class LikesController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     likes = Like.where(user_id: @user)
-    @posts = []
+    p = []
     likes.each do |like|
-      @posts << Post.find_by(id: like.post_id)
+      p << Post.find_by(id: like.post_id)
+      @posts = Kaminari.paginate_array(p).page(params[:page]).per(6)
+    end
+    respond_to do |format|
+      format.html
+      format.js {render 'posts/index'}
     end
   end
 end

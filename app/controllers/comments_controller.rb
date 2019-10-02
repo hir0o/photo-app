@@ -1,12 +1,8 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   def create
-    @comment = current_user.comments.build(content: params[:comment][:content], post_id: params[:post_id])
+    @comment = current_user.comments.create(content: params[:comment][:content], post_id: params[:post_id])
     @post = Post.find(params[:post_id])
-    if @comment.save
-      render :index
-    end
-
     # respond_to do |format|
     #   if @comment.save
     #     flash.now[:success] = "コメントを投稿しました。"
@@ -24,7 +20,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path
+    @comment = Comment.find(post_id: params[:post_id], id: params[:id])
   end
 
   def update

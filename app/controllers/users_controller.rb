@@ -6,6 +6,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(PER)
+    respond_to do |format|
+      format.html
+      format.js {render 'posts/index'}
+    end
   end
 
   def following

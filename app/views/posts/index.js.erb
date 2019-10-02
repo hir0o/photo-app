@@ -1,2 +1,2 @@
-$("#post-list").append("<%= escape_javascript(render partial: 'pagenate_posts') %>");
+$("#post-list").append("<%= escape_javascript(render partial: 'posts/pagenate_posts') %>");
 $("#more_link").replaceWith("<%= escape_javascript(link_to_next_page(@posts, 'つづきを見る', remote: true, id: 'more_link')) %>");

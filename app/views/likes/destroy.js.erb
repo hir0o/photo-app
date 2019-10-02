@@ -1,1 +1,2 @@
-$('#like_form').html("<%= j(render partial: 'likes/like_form') %>");
+$('#like_form').html("<%= j(render 'likes/like_form', post: @post) %>");
+$('.like_count').html("<%= j(render 'likes/like_count', post: @post) %>");

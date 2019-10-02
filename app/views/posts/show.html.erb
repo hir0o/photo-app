@@ -18,10 +18,10 @@
 <div class="post-footer">
 <div class="post-footer__content">
   <div class="post-user">
-  <%= image_tag @user.profile_image.url, class: "profile-image", size: "100" %>
+  <%= image_tag @post.user.profile_image.url, class: "profile-image", size: "100" %>
     <div class="post-user__profie">
-      <%= link_to @user.name, @user %>
-      <%= render 'users/follow_form', user: @user %>
+      <%= link_to @post.user.name, @post.user %>
+      <%= render 'users/follow_form', user: @post.user %>
     </div>
   </div>
   <div class="post-activity">

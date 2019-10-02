@@ -416,7 +416,7 @@ input[type="submit"].follow-btn {
   font-size: 0.7rem;
   &__on {
     background: #fff;
-    border: 1px solid #333333;
+    border: 1px solid #C2C6D0;
     color: #333333;
   }
 }
@@ -486,7 +486,7 @@ input[type="submit"].follow-btn {
 
 .hover {
   width: calc(100% - 1rem);
-  height: 150px;
+  height: 180px;
   padding: 4rem 1rem 0;
   background: linear-gradient(rgba(15,20,31,0) 0,rgba(15,20,31,.1) 25%,rgba(15,20,31,.8) 100%);
   background: linear-gradient(rgba(22,24,27,0) 0,rgba(22,24,27,.7) 64px,rgba(22,24,27,.9) 100%);
@@ -501,7 +501,7 @@ input[type="submit"].follow-btn {
     display: flex;
     align-items: center;
     position: absolute;
-    bottom: 1rem;
+    top: 6rem;
     left: 1rem;
     &__name {
       margin-left: 1rem;
@@ -510,7 +510,7 @@ input[type="submit"].follow-btn {
   &-stats__list {
     position: absolute;
     bottom: .5rem;
-    right: .5rem;
+    left: 1rem;
     &__item {
       display: inline-block;
       .icon {
@@ -574,6 +574,8 @@ input[type="submit"].follow-btn {
     -webkit-box-shadow: unset;
     box-shadow: unset;
     font-size: 1rem;
+    max-width: none;
+    min-width: auto;
   }
   .new_comment {
     width: 90%;
@@ -637,6 +639,7 @@ input[type="submit"].follow-btn {
 
 #like_form {
   display: inline;
+  position: relative;
 }
 
 .arrow_box {
@@ -650,6 +653,9 @@ input[type="submit"].follow-btn {
   color: #fff;
   margin-left: -1.4rem;
   font-size: .75rem;
+  top: 1.5rem;
+  left: 0;
+  white-space: nowrap;
   &__link {
     color: #ffffff;
   }

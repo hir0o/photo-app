@@ -13,18 +13,26 @@
       <div class="post-footer">
         <div class="post-footer__content">
           <div class="post-user">
-            <%= image_tag @user.profile_image.url, class: "profile-image", size:"100" %>
+            <%= image_tag @post.user.profile_image.url, class: "profile-image", size:"100" %>
             <div class="post-user__profie">
-              <%= link_to @user.name, @user %> <%= render 'users/follow_form',user: @user %>
+              <%= link_to @post.user.name, @post.user %><%= render 'users/follow_form', user: @post.user %>
             </div>
           </div>
           <div class="post-activity">
             <ul class="activity-list">
               <li class="activity-list__item">
-                <%= image_tag 'comment.svg', class: "comment-icon" %><%=@post.comments.count %>
+                <%= image_tag 'comment.svg', class: "comment-icon" %>
+                <span class="comment_count">
+                  <%= render 'comments/comment_count', post: @post %>
+                </span>
               </li>
-              <li class="activity-list__item" id="like_form">
-                <%= render'likes/like_form' %>
+              <li class="activity-list__item">
+                <span id="like_form">
+                  <%= render'likes/like_form', post: @post %>
+                </span>
+                <span class="like_count">
+                  <%= render 'likes/like_count', post: @post %>
+                </span>
               </li>
               <li class="activity-list__item footprint">
                 <%= image_tag 'eye.svg', class: "eye-icon" %><%=@post.footprints.count %>
@@ -57,7 +65,7 @@
             <div class="comment-box">
               <% if user_signed_in? %>
                 <%= image_tag current_user.profile_image.url, class: "profile-image", size: "80"%>
-                <%= render 'comments/comment_form' %>
+                <%= render 'comments/comment_form', comment: @comment, post: @post %>
               <% else %>
                 <div class="request-login">
                   <%= link_to "ログインしてコメントを残す。", user_session_path ,
@@ -66,10 +74,10 @@
               <% end %>
             </div>
             <div id="comment-error">
-              <%= render 'comments/error_message' %>
+              <%= render 'comments/error_message', comment: @comment %>
             </div>
             <div id="comments_area">
-            <%= render 'comments/index' %>
+              <%= render partial: 'comments/comment', collection: @comments %>
             </div>
           </div>
         </div>
