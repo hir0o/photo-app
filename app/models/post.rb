@@ -16,6 +16,9 @@ class Post < ApplicationRecord
   # 足跡機能
   has_many :footprints
   has_many :footprint_users, through: :footprints, source: :user
+  # google map api
+  geocoded_by :address
+  after_validation :geocode
   
   def self.search(search) #ここでのself.はMicropost.を意味する
     where(['title LIKE ?', "%#{search}%"])

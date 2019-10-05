@@ -14,6 +14,8 @@ html {
 body {
   background: #F4F4F7;
   color: #333;
+  font-family: 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+
 }
 a {
   text-decoration: none;
@@ -553,6 +555,11 @@ input[type="submit"].follow-btn {
       right: 0;
       font-size: .75rem;
     }
+    &__destroy {
+      position: absolute;
+      right: 2rem;
+      font-size: .75rem;
+    }
     &__date {
       font-size: 0.75rem;
     }
@@ -588,6 +595,13 @@ input[type="submit"].follow-btn {
       text-decoration: underline;
     }
   }
+}
+
+input[type="text"].edit-comment {
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  border: 1px solid #E9EAED;
+  border-radius: .25rem;
 }
 
 .post-user {

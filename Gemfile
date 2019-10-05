@@ -74,5 +74,7 @@ gem 'kaminari', '~> 0.17'
 gem 'rails-i18n', '~> 5.1'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-# 本番環境で使う?
+gem "gmaps4rails"
+gem "geocoder"
+gem 'dotenv-rails'
 # gem 'fog'

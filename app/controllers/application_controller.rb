@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # deviseコントローラーにストロングパラメータを追加する          
   before_action :configure_permitted_parameters, if: :devise_controller?
-  PER = 6
+  PER = 12
 
 
   def after_sign_in_path_for(resource)

@@ -1,0 +1,24 @@
+  <%= render 'user_profile', user: @user %>
+
+<div id="user_map" style='width: 100%; height: 500px;'></div>
+  <script type="text/javascript">
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'user_map'}}, function(){
+      <% @posts.each do |post| %>
+      markers = handler.addMarkers([
+      {
+          "lat": <%= post.latitude %>,
+          "lng": <%= post.longitude %>,
+          "infowindow": '<%= image_tag post.pictures[0].url, class:"post-picture" %><%= link_to "投稿を見る", post, class: "post-link", remote: true %><p><%= link_to "Googleマップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{post.latitude},#{post.longitude}&iwloc=J",target: "_blank" %></p>'
+      }
+      ]);
+      <% end %>
+
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(10);
+    });
+  </script>
+
+  <%# モーダルウィンドウ %>
+<div id="post-show-modal"></div>

@@ -1,1 +1,1 @@
-$("#comment-list-<%= @comment.id %>").parent().html("<%= escape_javascript(render 'comments/edit_comment_form') %>");
+$("#comment_edit_area_<%= @comment.id %>").replaceWith("<%= j(render 'comments/edit_comment_form', comment: @comment, post: @post) %>");

@@ -17,7 +17,7 @@ class LikesController < ApplicationController
     p = []
     likes.each do |like|
       p << Post.find_by(id: like.post_id)
-      @posts = Kaminari.paginate_array(p).page(params[:page]).per(6)
+      @posts = Kaminari.paginate_array(p).page(params[:page]).per(PER)
     end
     respond_to do |format|
       format.html

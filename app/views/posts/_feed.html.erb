@@ -1,8 +1,9 @@
 <h3><%= title %></h3>
+
 <ul class="post-list" id="post-list">
-  <%= render 'posts/pagenate_posts' %>
+  <%= render 'posts/pagenate_posts', posts: posts %>
 </ul>
-<%= link_to_next_page @posts, 'つづきを見る', remote: true, id: 'more_link' %>
+<%= link_to_next_page posts, 'つづきを見る', remote: true, id: 'more_link' unless posts.nil? %>
 
 <%# モーダルウィンドウ %>
 <div id="post-show-modal"></div>

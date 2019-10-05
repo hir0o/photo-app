@@ -1,5 +1,5 @@
 FROM ruby:2.6.2
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install --no-install-recommends -y nodejs postgresql-client
 RUN mkdir /photo-app
 WORKDIR /photo-app
 COPY Gemfile /photo-app/Gemfile

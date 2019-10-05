@@ -1,1 +1,7 @@
-<h1>フォームだと</h1>
+<span id="comment_edit_area_<%= comment.id %>">
+  <%= render 'layouts/error_message', object: comment %>
+  <%= form_for([post, comment], method: :patch, remote: true,:url => {:action => :update} ) do |f| %>
+    <%= f.text_field :content, value:  comment.content, class: "edit-comment",rows: "1" %>
+    <%= f.submit class: "dn" %>
+  <% end %>
+</span>
