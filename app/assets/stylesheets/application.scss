@@ -12,7 +12,7 @@ html {
   font-size: 16px;
 }
 body {
-  background: #F4F4F7;
+  background: #f0f4f7;
   color: #333;
   font-family: 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 
@@ -89,6 +89,10 @@ h3 {
 .error-message {
   color: #DD0000;
   font-size: 1rem;
+}
+
+.form {
+  position: relative;
 }
 
 .form input:not([type="submit"]):not([type="checkbox"]) {
@@ -249,6 +253,30 @@ h2 {
   display: none;
 }
 
+.map-wrap {
+  position: relative;
+}
+.map-serch {
+  position: absolute;
+  top: 18rem;
+  left: 5.5rem;
+  z-index: 100;
+  width: 360px;
+  input[type="text"].map-serch__input {
+    margin: 0;
+    padding: 0.5rem;
+  }
+  &__inner {
+    position: relative;
+    &__button {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+
 .preview-picture {
   width: 80%;
   align-self: flex-start;
@@ -282,7 +310,7 @@ h2 {
 
 .file-picture-con {
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 3rem 0;
   background: rgba(0, 0, 0, .05);
   padding: 3rem;
 }
@@ -608,7 +636,7 @@ input[type="text"].edit-comment {
   display: flex;
   padding: 2rem;
   background: #fff;
-  border: 1px solid #C2C6D0;
+  border: 1px solid #E9EAED;
   &__profie {
     margin-left: 1rem;
     font-size: 1.3rem;
@@ -619,7 +647,7 @@ input[type="text"].edit-comment {
   margin-top: 1rem;
   padding: 1rem;
   background: #fff;
-  border: 1px solid #C2C6D0;
+  border: 1px solid #E9EAED;
 }
 
 .activity-list {
@@ -732,7 +760,7 @@ span:hover p.arrow_box {
   margin-top: 1rem;
   padding: 1rem;
   background: #fff;
-  border: 1px solid #C2C6D0;
+  border: 1px solid #E9EAED;
   &__con {
     margin-top: 1rem;
   }
@@ -825,7 +853,7 @@ li.menu__single:hover ul.menu-level {
     &__comment {
       padding: 2rem;
       background: #fff;
-      border: 1px solid #C2C6D0;
+      border: 1px solid #E9EAED;
       @include mq {
         margin-top: 1rem;
       }
