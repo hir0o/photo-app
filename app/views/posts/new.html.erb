@@ -112,24 +112,11 @@
       }
     }
 
-
-  var mapOptions = {
-      zoom: 11,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: {lat: 35.6587096, lng: 139.7452492}
-    };
-
-var map = new google.maps.Map(document.getElementById("map-camvas"), mapOptions);
-
-
-
-
 var getMap = (function() {
   function codeAddress(address) {
     // google.maps.Geocoder()コンストラクタのインスタンスを生成
     var geocoder = new google.maps.Geocoder();
 
-        // 地図表示に関するオプション
     var mapOptions = {
       zoom: 11,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -139,13 +126,16 @@ var getMap = (function() {
       streetViewControl: false, //ストリートビュー コントロール
       zoomControl: true, //ズーム コントロール
     };
- 
-    // 地図を表示させるインスタンスを生成
+
     var map = new google.maps.Map(document.getElementById("map-camvas"), mapOptions);
-     
-    //マーカー変数用意
+
+  //マーカー変数用意
     var marker;
-     
+
+    var marker = new google.maps.Marker({
+      map: map,
+      position: new google.maps.LatLng( 35.6587096, 139.7452492 )
+    });
     // geocoder.geocode()メソッドを実行 
     geocoder.geocode( { 'address': address}, function(results, status) {
        

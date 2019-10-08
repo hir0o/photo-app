@@ -774,21 +774,6 @@ input[type="text"].edit-comment {
   display: block;
 }
 
-// .arrow_box:after {
-//   position: absolute;
-//   bottom: 100%;
-//   left: 50%;
-//   width: 0;
-//   height: 0;
-//   margin-left: -10px;
-//   border: solid transparent;
-//   border-color: rgba(51, 51, 51, 0);
-//   border-bottom-color: #333;
-//   border-width: 10px;
-//   pointer-events: none;
-//   content: " ";
-// }
-
 span:hover p.arrow_box {
   display: block;
 }
@@ -867,11 +852,40 @@ li.menu__single:hover ul.menu-level {
 
 
 //  show
-
 .post-show-container {
   max-width: 1000px;
   width: 95%;
   margin: 0 auto;
+}
+
+.edit-btn {
+  position: relative;
+  &:hover > &__list {
+    opacity: 1; 
+    visibility: visible;
+  }
+  &__v {
+    width: 15px;
+    height: 15px;
+    transform: rotate(-45deg);
+    border-bottom: 3px solid #222;
+    border-left: 3px solid #222;
+  }
+  &__list {
+    position: absolute;
+    opacity: 0; 
+    transition: .1s;
+    visibility: hidden;
+    left: 0;
+    top: 1.25rem;
+    width: 9rem;
+    background: rgba(0,0,0,.6);
+    color: #fff;
+    padding: .5rem;
+    &__item a {
+      color: #ffffff;
+    }
+  }
 }
 
 .post-footer {
@@ -1006,6 +1020,12 @@ input[type="submit"].account-delete-btn {
   }
 }
 
+.user-map-container {
+  margin: 0 auto;
+  max-width: 900px;
+  width: 90%;
+}
+
 .flex {
   display: flex;
   @include mq {
@@ -1015,4 +1035,13 @@ input[type="submit"].account-delete-btn {
 
 .users-box + .users-box {
   margin-top: 2rem;
+}
+
+
+.footer {
+  background: rgb(6, 12, 17);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 3rem;
 }

@@ -4,10 +4,19 @@
       <div class="close-btn" id="close">
         <div class="batsu"></div>
       </div>
+
+      <%if  current_user?(@post.user) %>
       <div class="edit-btn">
-        <%= link_to "編集", edit_post_path(@post) %>
-        <%= link_to "投稿を削除する。", "#" %>
+        <div class="edit-btn__v"></div>
+        <ul class="edit-btn__list">
+          <li class="edit-btn__list__item"><%= link_to "編集", edit_post_path(@post) %></li>
+          <li class="edit-btn__list__item"><%= link_to "投稿を削除する。",
+                     post_path(@post), method: "delete", remote: true, data: {confirm: "削除しますか？"} %></li>
+        </ul>
       </div>
+      <% end %>
+
+      
       <h2>
         <%= @post.title %>
       </h2>

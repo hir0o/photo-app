@@ -7,14 +7,14 @@ class Post < ApplicationRecord
   validates  :user_id, presence: true
   validates  :title, presence: true, length: { maximum: 50 }
   # like関係
-  has_many   :likes
-  has_many   :liked_users, through: :likes, source: :user, dependent: :destroy
+  has_many   :likes, dependent: :destroy
+  has_many   :liked_users, through: :likes, source: :user
   # comment
   has_many :comments, dependent: :destroy
   # tag
   acts_as_taggable
   # 足跡機能
-  has_many :footprints
+  has_many :footprints, dependent: :destroy
   has_many :footprint_users, through: :footprints, source: :user
   # google map api
   geocoded_by :address

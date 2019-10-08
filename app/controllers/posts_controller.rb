@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(posts_params)
     if @post.save
-      redirect_to current_user, flash: {success: "post created!"}
+      redirect_to current_user, flash: {success: "投稿に成功しました。"}
     else
       render :new
     end
@@ -54,9 +54,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
-    flash[:success] = "Micropost deleted"
-    redirect_to request.referrer || root_url
+    flash.now[:success] = "投稿を削除しました。"
   end
   
   private
