@@ -4,6 +4,10 @@
       <div class="close-btn" id="close">
         <div class="batsu"></div>
       </div>
+      <div class="edit-btn">
+        <%= link_to "編集", edit_post_path(@post) %>
+        <%= link_to "投稿を削除する。", "#" %>
+      </div>
       <h2>
         <%= @post.title %>
       </h2>
@@ -22,6 +26,9 @@
             <div class="post-user__profie">
               <%= link_to @post.user.name, @post.user %><%= render 'users/follow_form', user: @post.user %>
             </div>
+          </div>
+          <div class="post-description">
+            <%= simple_format(@post.description) %>
           </div>
           <div class="post-activity">
             <ul class="activity-list">

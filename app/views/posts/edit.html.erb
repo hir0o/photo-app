@@ -32,23 +32,35 @@
   <div id="map-camvas" style='width: 100%; height: 500px;'></div>
   
   <%= f.text_area :description, placeholder: "説明" %>
-  <div class="file-picture-con" id="drag-drop-area">
-    <p class="drag-drop-info">ここに画像ファイルをドロップ</p>
+
+  <p class="tac">投稿してる写真</p>
+  <div class="edit-picture" id="edit-picture">
+    <div class="edit-picture__btn" id="edit-picture-btn">
+      <p class="edit-picture__btn__item">写真を最初から編集する</p>
+    </div>
+    <% @post.pictures.each do |picture| %>
+      <%= image_tag picture.url, class: "edit-picture__preview" %>
+    <% end %>
   </div>
-  <p class="tac">または</p>
-  <div class="tac mt1">
-    <label for="file-picture" class="file-picture__label">
-      写真を選択
-      <%= f.file_field :pictures, class: "file-picture", id: "file-picture", multiple: true %>
-    </label>
-  </div>
-  <div id="preview" class="preview">
-    <p class="tac" id="preview-title">プレビュー</p>
-    <div id="preview-inner">
+  <div class="edit-picture-container" id="edit-picture-container">
+    <div class="file-picture-con" id="drag-drop-area">
+      <p class="drag-drop-info">ここに画像ファイルをドロップ</p>
+    </div>
+    <p class="tac">または</p>
+    <div class="tac mt1">
+      <label for="file-picture" class="file-picture__label">
+        写真を選択
+        <%= f.file_field :pictures, class: "file-picture", id: "file-picture", multiple: true %>
+      </label>
+    </div>
+    <div id="preview" class="preview">
+      <p class="tac" id="preview-title">プレビュー</p>
+      <div id="preview-inner">
+      </div>
     </div>
   </div>
   <div class="actions">
-    <%= f.submit "投稿", class: "btn btn-primary" %>
+    <%= f.submit "編集を反映する", class: "btn btn-primary" %>
   </div>
 <% end %>
 
@@ -112,11 +124,24 @@
       }
     }
 
+    $("#edit-picture-btn").on("click", function(){
+      $("#edit-picture").remove();
+      $("#edit-picture-container").show();
+      
+    });
+
 
   var mapOptions = {
       zoom: 11,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: {lat: 35.6587096, lng: 139.7452492}
+      center: {
+        lat: <%= @post.latitude %>,
+        lng: <%= @post.longitude %>
+      },
+      mapTypeControl: false,
+      fullscreenControl: false, //全画面表示コントロール
+      streetViewControl: false, //ストリートビュー コントロール
+      zoomControl: true, //ズーム コントロール
     };
 
 var map = new google.maps.Map(document.getElementById("map-camvas"), mapOptions);
@@ -128,17 +153,6 @@ var getMap = (function() {
   function codeAddress(address) {
     // google.maps.Geocoder()コンストラクタのインスタンスを生成
     var geocoder = new google.maps.Geocoder();
-
-        // 地図表示に関するオプション
-    var mapOptions = {
-      zoom: 11,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: {lat: 35.6587096, lng: 139.7452492},
-      mapTypeControl: false,
-      fullscreenControl: false, //全画面表示コントロール
-      streetViewControl: false, //ストリートビュー コントロール
-      zoomControl: true, //ズーム コントロール
-    };
  
     // 地図を表示させるインスタンスを生成
     var map = new google.maps.Map(document.getElementById("map-camvas"), mapOptions);

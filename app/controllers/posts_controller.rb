@@ -39,6 +39,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    p params[:id]
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(posts_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @post.destroy
     flash[:success] = "Micropost deleted"
@@ -49,7 +63,7 @@ class PostsController < ApplicationController
   
     def posts_params
       params.require(:post).permit(
-        :title, :tag_list, {pictures: []}, :address, :latitude, :longitude
+        :title, :tag_list, {pictures: []}, :address, :latitude, :longitude, :description
       )
     end
 end
