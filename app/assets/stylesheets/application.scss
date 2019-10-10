@@ -860,6 +860,7 @@ li.menu__single:hover ul.menu-level {
 
 .edit-btn {
   position: relative;
+  width: 15px;
   &:hover > &__list {
     opacity: 1; 
     visibility: visible;
@@ -1044,4 +1045,13 @@ input[type="submit"].account-delete-btn {
   text-align: center;
   padding: 1rem;
   margin-top: 3rem;
+}
+
+
+// map 
+
+.gm-post-picture {
+  max-width: 400px;
+  width: 100%;
+  display: block;
 }

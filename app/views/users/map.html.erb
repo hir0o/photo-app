@@ -11,7 +11,7 @@
       {
           "lat": <%= post.latitude %>,
           "lng": <%= post.longitude %>,
-          "infowindow": '<%= image_tag post.pictures[0].url, class:"post-picture" %><%= link_to "投稿を見る", post, class: "post-link", remote: true %><p><%= link_to "Googleマップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{post.latitude},#{post.longitude}&iwloc=J",target: "_blank" %></p>'
+          "infowindow": '<%= image_tag post.pictures[0].url, class:"gm-post-picture" %><%= link_to "投稿を見る", post, class: "post-link", remote: true %><p><%= link_to "Googleマップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{post.latitude},#{post.longitude}&iwloc=J",target: "_blank" %></p>'
       }
       ]);
       <% end %>
