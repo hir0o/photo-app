@@ -6,7 +6,7 @@
       <% end %>
     <% end %>
   <p class="user-name"><%= user.name %></p>
-  <%= render 'users/stats' %>
+  <%= render 'users/stats', user: @user %>
   <%= render 'users/follow_form', user: @user %>
   </div>
 

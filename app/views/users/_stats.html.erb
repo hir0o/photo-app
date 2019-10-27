@@ -1,13 +1,13 @@
 <div class="stats">
-  <%= link_to(following_user_path(@user), class: "stats-link") do %>
+  <%= link_to(following_user_path(user), class: "stats-link") do %>
     <strong id="following" class="stat">
-      <%= @user.followings.count %>
+      <%= user.followings.count %>
     </strong>
     following
   <% end %>
-  <%= link_to(followers_user_path(@user), class: "stats-link") do %>
+  <%= link_to(followers_user_path(user), class: "stats-link") do %>
     <strong id="followers" class="stat">
-      <%= @user.followers.count %>
+      <%= user.followers.count %>
     </strong>
     followers
   <% end %>
