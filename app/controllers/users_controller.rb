@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   USER_PER = 3
 
   def index
-    @users = User.page(params[:page]).per(USER_PER)
+    if @search = params[:search]
+      @users = User.search(params[:search]).page(params[:page]).per(USER_PER)
+    else
+      @users = User.page(params[:page]).per(USER_PER)
+    end
   end
 
   def show

@@ -42,6 +42,10 @@ class User < ApplicationRecord
     self.likes.exists?(post_id: post.id)
   end
 
+  def self.search(search)
+    where(['name LIKE ?', "%#{search}%"])
+  end
+
     #  minimagick
     def thumbnail
       return self.variant(resize: '150x150').processed

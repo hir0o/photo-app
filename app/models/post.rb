@@ -21,11 +21,11 @@ class Post < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
   
-  def self.search(search) #ここでのself.はMicropost.を意味する
+  def self.search(search)
     where(['title LIKE ?', "%#{search}%"])
   end
 
-  def self.tag_search(tag_name) #ここでのself.はMicropost.を意味する
+  def self.tag_search(tag_name)
     tagged_with("#{tag_name}")
   end
 
