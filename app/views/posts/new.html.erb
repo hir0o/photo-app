@@ -125,11 +125,7 @@
     };
     var map = new google.maps.Map(document.getElementById("map-camvas"), mapOptions);
     //マーカー変数用意
-    var marker = new google.maps.Marker({
-      map: map,
-      position: new google.maps.LatLng(35.6587096, 139.7452492)
-    });
-
+    var marker
     // マップをクリックで位置変更
       map.addListener('click', function (e) {
         getClickLatLng(e.latLng, map);

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
+  USER_PER = 3
+
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(USER_PER)
   end
 
   def show
@@ -21,13 +23,13 @@ class UsersController < ApplicationController
 
   def following
     @user  = User.find(params[:id])
-    @users = @user.followings
+    @users = @user.followings.page(params[:page]).per(USER_PER)
     render 'index'
   end
 
   def followers
     @user  = User.find(params[:id])
-    @users = @user.followers
+    @users = @user.followers.page(params[:page]).per(USER_PER)
     render 'index'
   end
 end

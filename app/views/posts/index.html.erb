@@ -5,11 +5,13 @@
       <% end %>
     </div>
   
+
+  <%# ロジックを、ヘルパーに移す %>
   <% if @tag_name %>
-    <%= render 'posts/feed', title: @tag_name, posts: @posts %>
+    <%= render 'posts/list', title: @tag_name, posts: @posts %>
   <% elsif @search %>
-    <%= render 'posts/feed', title: @search, posts: @posts %>
+    <%= render 'posts/list', title: @search, posts: @posts %>
   <% else %>
-    <%= render 'posts/feed', title: "投稿一覧", posts: @posts %>
+    <%= render 'posts/list', title: "投稿一覧", posts: @posts %>
   <% end %>
   

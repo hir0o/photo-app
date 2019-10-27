@@ -4,6 +4,7 @@
       <ul class="header-list">
           <li class="header-list__item"><%= link_to "トップ", root_path %></li>
           <li class="header-list__item"><%= link_to "すべての投稿", posts_path %></li>
+          <li class="header-list__item"><%= link_to "マップで見る", map_path %></li>
           <li class="header-list__item"><%= link_to "すべてのユーザー", users_path %></li>
         <% unless current_user %>
           <li class="header-list__item"><%= link_to "会員登録", new_user_registration_path %></li>

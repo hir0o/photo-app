@@ -403,9 +403,14 @@ margin-top: 2rem;
   }
 }
 
-.profile-image {
+.profile-image, .profile-preview-picture {
   border-radius: 50%;
   object-fit: cover;
+}
+
+.profile-preview-picture {
+  width: 150px;
+  height: 150px;
 }
 
 .user-box__image {
