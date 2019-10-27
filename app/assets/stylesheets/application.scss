@@ -112,13 +112,15 @@ h3 {
 header {
   color: #fff;
   z-index: 100;
-  background-color: #000;
+  background-color: #272727;
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: .5rem 5rem;
   align-items: center;
   height: 50px;
+  position: sticky;
+  top: 0;
   @include mq {
     padding: 0.5rem 1rem;
   }
@@ -139,13 +141,17 @@ header {
 }
 
 .search{
-  width: 95%;
-  max-width: 900px;
-  margin: 0 auto;
+  background-color: #272727;
+  padding: 1rem 0;
   &__item {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto;
+    &__input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
   }
 }
 
@@ -954,7 +960,7 @@ input[type="submit"].account-delete-btn {
 
 
 .modal-dialog {
-  z-index: 5;
+  z-index: 200;
   position: fixed;
   top: 0;
   left: 0;
@@ -1068,7 +1074,7 @@ input[type="submit"].account-delete-btn {
 
 
 .footer {
-  background: rgb(6, 12, 17);
+  background: #272727;
   color: #fff;
   text-align: center;
   padding: 1rem;
