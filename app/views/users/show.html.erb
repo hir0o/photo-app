@@ -1,2 +1,17 @@
-<%= render 'user_profile', user: @user %>
-<%= render 'posts/feed', title: "投稿一覧", posts: @posts %>
+<div class="user-container">
+<%= render 'profile', user: @user %>
+
+<% if @posts.present? %>
+  <%= render 'posts/feed', title: "投稿一覧", posts: @posts %>
+<% elsif current_user?(@user) %>
+<div class="non-post">
+  <h4 class="tac">
+  投稿がまだありません。<br>
+  最初の投稿をしてみましょう！
+  </h4>
+  <%= link_to "投稿する", new_post_path, class: "non-post__link" %>
+</div>
+<% else %>
+  <h4 class="tac">投稿はまだありません</h4>
+<% end %>
+</div>

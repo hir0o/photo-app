@@ -16,12 +16,13 @@
       </div>
       <% end %>
 
-      
       <h2>
         <%= @post.title %>
       </h2>
       <div class="picture-con">
-        <% @post.pictures.each do |picture| %> <%= image_tag picture.url, class:"post-picture" %> <% end %>
+        <% @post.pictures.each do |picture| %>
+          <%= image_tag picture.url, class:"post-picture" %>
+        <% end %>
       </div>
 
 

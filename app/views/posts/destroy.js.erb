@@ -1,4 +1,4 @@
 $(".modal-dialog").fadeOut(250);
 $("#js-post-list-item-<%= @post.id %>").remove();
-$('body').css('overflow','hidden');
+$('body').css('overflow','visible');
 $("#flash-con").html("<%= j(render 'layouts/flash') %>");

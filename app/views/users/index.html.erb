@@ -1,1 +1,2 @@
-  <%= render 'user_list', users: @users, title: "ユーザー一覧" %>
+<%= render  'profile', user: @user if @user %>
+<%= render 'user_list', users: @users, title: user_list_title %>

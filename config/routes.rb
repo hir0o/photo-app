@@ -12,4 +12,7 @@ Rails.application.routes.draw do
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create edit update destroy]
   end
+
+  get'/map',to: 'posts#map'
+
 end

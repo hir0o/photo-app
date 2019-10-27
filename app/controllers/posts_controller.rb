@@ -20,7 +20,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    current_user.footprints.create(post_id: @post.id)
+    if current_user
+      current_user.footprints.create(post_id: @post.id)
+    end
     @like = Like.new
     @comment = Comment.new
     @comments = @post.comments
@@ -57,6 +59,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash.now[:success] = "投稿を削除しました。"
+  end
+
+  def map
+    @posts = Post.all
   end
   
   private

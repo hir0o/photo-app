@@ -1,0 +1,89 @@
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.6.2
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: 
+          name: bundle update
+          command: gem install bundler:2.0.2
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+  build_image:
+    docker:
+      - image: docker:18.09.0
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: install aws cli
+          command: |
+            apk add --no-cache --update py-pip
+            pip install awscli
+      - run:
+          name: login ecr
+          command: |
+            $(aws ecr get-login --no-include-email --region ap-northeast-1)
+      - run:
+          name: build image
+          command: |
+            docker build -t ${ECR_DOMAIN}:$CIRCLE_SHA1 -t ${ECR_DOMAIN}:latest .
+      - run:
+          name: Push docker image
+          command: |
+            docker push ${ECR_DOMAIN}:$CIRCLE_SHA1
+            docker push ${ECR_DOMAIN}:latest
+  # deploy:
+  #   docker:
+  #     - image: circleci/python:3.7
+  #   steps: 
+  #   - run:
+  #       name: install aws cli
+  #       command: |
+  #         sudo pip install awscli
+  #   - run:
+  #       name: download jq
+  #       command: |
+  #         wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+  #         mv jq-linux64 jq
+  #   - run:
+  #       name: login
+  #       command: |
+  #         $(aws ecr get-login --no-include-email --region ap-northeast-1)
+  #   - run:
+  #       name: deploy
+  #       command: |
+  #         aws ecs --region ap-northeast-1 register-task-definition --family webapp-service --cli-input-json "$(aws ecs describe-task-definition --task-definition webapp-service --region ap-northeast-1 | jq '.taskDefinition | { containerDefinitions: .containerDefinitions }')"
+  #         aws ecs update-service --cluster sample-ecs-cluster --service webapp-service --task-definition webapp-service --region ap-northeast-1
+workflows:
+  version: 2
+  test:
+    jobs:
+      - build
+      - build_image:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      # - deploy:
+      #     requires:
+      #       - build_image
+      #     filters:
+      #       branches:
+      #         only: master
+
+

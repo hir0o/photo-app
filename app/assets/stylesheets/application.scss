@@ -93,6 +93,9 @@ h3 {
 
 .form {
   position: relative;
+  &-box {
+    position: relative;
+  }
 }
 
 .form input:not([type="submit"]):not([type="checkbox"]) {
@@ -109,7 +112,7 @@ h3 {
 header {
   color: #fff;
   z-index: 100;
-  background-color: rgba($color: #000, $alpha: .6);
+  background-color: #000;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -151,7 +154,7 @@ header {
   // background: image-url('top.jpg');
   background-image: url("http://huntbank.xsrv.jp/top2.jpg");
   background-size: cover;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   width: 100%;
   padding-top: 4rem;
   position: relative;
@@ -241,6 +244,7 @@ h2 {
 
 .container {
   padding: 2rem 0;
+  min-height: calc(100vh - 100px);
 }
 
 // post new
@@ -258,8 +262,8 @@ h2 {
 }
 .map-serch {
   position: absolute;
-  top: 18rem;
-  left: 5.5rem;
+  top: 11rem;
+  left: 1rem;
   z-index: 100;
   width: 360px;
   input[type="text"].map-serch__input {
@@ -341,6 +345,7 @@ min-height: 100px;
 border: 1px solid #E9EAED;
 padding: 0.5rem;
 font-size: 1rem;
+margin-top: 2rem;
 }
 
 .form-btn {
@@ -355,6 +360,11 @@ font-size: 1rem;
   color: #5890ff;
   text-decoration: underline;
 }
+
+.user-container {
+  min-height: calc(100vh - 120px);
+}
+
 .user-canopy {
   background-size: cover;
   background-position: center;
@@ -369,6 +379,7 @@ font-size: 1rem;
   margin: 1rem auto 4rem;
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  background-color: #eeffef;
 }
 
 .user-box {
@@ -436,6 +447,18 @@ font-size: 1rem;
   right: -15px;
   bottom: -15px;
   z-index: -1;
+}
+
+.non-post {
+  text-align: center;
+  &__link {
+    display: inline-block;
+    border: 1px solid #222;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+  }
+
 }
 
 input[type="submit"].follow-btn {
@@ -943,6 +966,7 @@ input[type="submit"].account-delete-btn {
   height: 100%;
   background: #F4F4F7;
   width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -1021,10 +1045,9 @@ input[type="submit"].account-delete-btn {
   }
 }
 
-.user-map-container {
+.map-container {
   margin: 0 auto;
-  max-width: 900px;
-  width: 90%;
+  width: 100%;
 }
 
 .flex {
@@ -1044,8 +1067,9 @@ input[type="submit"].account-delete-btn {
   color: #fff;
   text-align: center;
   padding: 1rem;
-  margin-top: 3rem;
 }
+
+
 
 
 // map 

@@ -3,10 +3,10 @@ class Post < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
   mount_uploader  :picture, PictureUploader
   mount_uploaders :pictures, PictureUploader
-  validates  :pictures, presence: true, length: { maximum: 3 }
+  validates  :pictures, presence: true, length: { maximum: 5 }
   validates  :user_id, presence: true
   validates  :title, presence: true, length: { maximum: 50 }
-  validates  :latitude, presence: true
+  # validates  :latitude, presence: true
   # like関係
   has_many   :likes, dependent: :destroy
   has_many   :liked_users, through: :likes, source: :user

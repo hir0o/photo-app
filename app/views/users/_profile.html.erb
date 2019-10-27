@@ -1,0 +1,27 @@
+<div class="user-canopy">
+  <div class="user-box">
+    <%= image_tag(user.profile_image.url, class: "user-box__image profile-image", size: "150") do %>
+      <% if current_user?(user) %>
+        <%= link_to image_tag("pen.svg", class: "user-box__edit--image"), edit_user_registration_path,class: "user-box__edit" %>
+      <% end %>
+    <% end %>
+  <p class="user-name"><%= user.name %></p>
+  <%= render 'users/stats' %>
+  <%= render 'users/follow_form', user: @user %>
+  </div>
+
+  <ul class="user-link">
+    <li class="user-link__item"><%= link_to "投稿一覧", user %></li>
+    <li class="user-link__item"><%= link_to "お気に入り",  user_likes_path(user) %></li>
+    <li class="user-link__item"><%= link_to "地図", map_user_path(user) %></li>
+    <% if current_user?(user) %>
+      <li class="user-link__item"><%= link_to "編集", edit_user_registration_path %></li>
+    <% end %>
+  </ul>
+  </div>
+
+<style>
+.user-canopy {
+    background-image: url("<%= user.profile_image.url %>");
+  }
+</style>

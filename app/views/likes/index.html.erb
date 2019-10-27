@@ -1,2 +1,9 @@
-<%= render 'users/user_profile', user: @user %>
-<%= render 'posts/feed', title: "お気に入り", posts: @posts %>
+<div class="container">
+  <%= render 'users/profile', user: @user %>
+
+  <% if @posts.present? %>
+    <%= render 'posts/feed', title: "お気に入り", posts: @posts %>
+  <% else %>
+    <h4 class="tac">お気に入りはまだありません</h4>
+  <% end %>
+</div>

@@ -3,22 +3,14 @@
 <h2>投稿フォーム</h2>
 
 
-<% if @post.errors.any? %>
-<div id="error_explanation">
-  <div class="alert alert-danger">
-      <%= @post.errors.count %>
-  </div>
-  <ul class="post-error">
-  <% @post.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</div>
-<% end %>
+<%= render "layouts/error_message", object: @post %>
 
+
+<div class="form-box">
 <div class="map-serch">
   <form onsubmit="return false;">
     <input type="text" id="address" class="map-serch__input" placeholder="場所を検索するか、地図をクリックしてください。">
-    <button type="hidden" id="map_button"></button>
+    <button style="margin-left: 10000px;" id="map_button"></button>
   </form>
 </div>
 
@@ -26,8 +18,8 @@
 <%= form_for(@post, class: "form") do |f| %>
   <%= f.text_field :title, placeholder: "タイトル" %>
   <%= f.text_field :tag_list, value: @post.tag_list, class: "form-control", placeholder: "タグ（カンマ区切り）" %>
-  <%= f.text_field :latitude, placeholder: "軽度", id: "lat", type: "hidden" %>
-  <%= f.text_field :longitude, placeholder: "緯度", id: "lng", type:"hidden" %>
+  <%= f.text_field :latitude, id: "lat", type: "hidden" %>
+  <%= f.text_field :longitude, id: "lng", type:"hidden" %>
 
   <div id="map-camvas" style='width: 100%; height: 500px;'></div>
   
@@ -51,56 +43,60 @@
     <%= f.submit "投稿", class: "btn btn-primary" %>
   </div>
 <% end %>
+</div>
+</div>
+</div>
 
-</div>
-</div>
+<style>
+.field_with_errors {
+  display: none;
+}
+</style>
 
 
   <script>
-  'use stript';
-  {
+  'use stript'; {
     const fileArea = document.getElementById('drag-drop-area');
     const fileInput = document.getElementById('file-picture');
     const preview = document.getElementById('preview');
     const previewInner = document.getElementById("preview-inner")
-
-    fileArea.addEventListener('dragover', function(evt){
+    fileArea.addEventListener('dragover', function (evt) {
       evt.preventDefault();
       fileArea.classList.add('dragover');
     });
-    fileArea.addEventListener('dragleave', function(evt){
-        evt.preventDefault();
-        fileArea.classList.remove('dragover');
+    fileArea.addEventListener('dragleave', function (evt) {
+      evt.preventDefault();
+      fileArea.classList.remove('dragover');
     });
     // droした時
-    fileArea.addEventListener('drop', function(evt){
-        evt.preventDefault();
-        fileArea.classList.remove('dragenter');
-        preview.classList.add('preview__on');
-        if (document.getElementById('previewPicture') != null) {
-          while (previewInner.firstChild) {
-            previewInner.removeChild(previewInner.firstChild);
-          }
+    fileArea.addEventListener('drop', function (evt) {
+      evt.preventDefault();
+      fileArea.classList.remove('dragenter');
+      preview.classList.add('preview__on');
+      if (document.getElementById('previewPicture') != null) {
+        while (previewInner.firstChild) {
+          previewInner.removeChild(previewInner.firstChild);
         }
-        var files = evt.dataTransfer.files;
-        fileInput.files = files;
-        filePreview(files);
-        console.log(fileInput.files[0]);
+      }
+      var files = evt.dataTransfer.files;
+      fileInput.files = files;
+      filePreview(files);
+      console.log(fileInput.files[0]);
     });
     // 写真を選択からinputした場合
-    fileInput.addEventListener('change', function(evt) {
-        if (document.getElementById('previewPicture') != null) {
-          while (previewInner.firstChild) {
-            previewInner.removeChild(previewInner.firstChild);
-          }
+    fileInput.addEventListener('change', function (evt) {
+      if (document.getElementById('previewPicture') != null) {
+        while (previewInner.firstChild) {
+          previewInner.removeChild(previewInner.firstChild);
         }
+      }
       const files = fileInput.files;
       filePreview(files);
     });
     // fileをプレビューする関数
     function filePreview(files) {
       preview.classList.add('preview__on')
-      for (let i = 0; i < files.length; i ++ ) {
+      for (let i = 0; i < files.length; i++) {
         var imageFile = files[i];
         var blobUrl = window.URL.createObjectURL(imageFile);
         console.log(blobUrl)
@@ -112,66 +108,41 @@
       }
     }
 
-var getMap = (function() {
-  function codeAddress(address) {
+    
     // google.maps.Geocoder()コンストラクタのインスタンスを生成
     var geocoder = new google.maps.Geocoder();
-
     var mapOptions = {
       zoom: 11,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: {lat: 35.6587096, lng: 139.7452492},
+      center: {
+        lat: 35.6587096,
+        lng: 139.7452492
+      },
       mapTypeControl: false,
       fullscreenControl: false, //全画面表示コントロール
       streetViewControl: false, //ストリートビュー コントロール
       zoomControl: true, //ズーム コントロール
     };
-
     var map = new google.maps.Map(document.getElementById("map-camvas"), mapOptions);
-
-  //マーカー変数用意
-    var marker;
-
+    //マーカー変数用意
     var marker = new google.maps.Marker({
       map: map,
-      position: new google.maps.LatLng( 35.6587096, 139.7452492 )
+      position: new google.maps.LatLng(35.6587096, 139.7452492)
     });
-    // geocoder.geocode()メソッドを実行 
-    geocoder.geocode( { 'address': address}, function(results, status) {
-       
-      // ジオコーディングが成功した場合
-      if (status == google.maps.GeocoderStatus.OK) {
-        // 変換した緯度・経度情報を地図の中心に表示
-        map.setCenter(results[0].geometry.location);
-        //☆表示している地図上の緯度経度
-        document.getElementById('lat').value=results[0].geometry.location.lat();
-        document.getElementById('lng').value=results[0].geometry.location.lng();
-        // マーカー設定
-        marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-        });
-       
-      // ジオコーディングが成功しなかった場合
-      } else {
-        console.log('Geocode was not successful for the following reason: ' + status);
-      }
-     
-    });
+
     // マップをクリックで位置変更
-    map.addListener('click', function(e) {
-      getClickLatLng(e.latLng, map);
-    });
+      map.addListener('click', function (e) {
+        getClickLatLng(e.latLng, map);
+      });
     function getClickLatLng(lat_lng, map) {
-      //☆表示している地図上の緯度経度
-      document.getElementById('lat').value=lat_lng.lat();
-      document.getElementById('lng').value=lat_lng.lng();
+      //表示している地図上の緯度経度
+      document.getElementById('lat').value = lat_lng.lat();
+      document.getElementById('lng').value = lat_lng.lng();
       // マーカーを設置
       console.log(marker)
       if (marker) {
         marker.setMap(null);
       }
-      
       marker = new google.maps.Marker({
         position: lat_lng,
         map: map
@@ -179,31 +150,56 @@ var getMap = (function() {
       // 座標の中心をずらす
       map.panTo(lat_lng);
     }
-  }
 
-  //inputのvalueで検索して地図を表示
-  return {
-    getAddress: function() {
-      // ボタンに指定したid要素を取得
-      var button = document.getElementById("map_button");
-      // ボタンが押された時の処理
-      button.onclick = function() {
-        // フォームに入力された住所情報を取得
-        var address = document.getElementById("address").value;
-        // 取得した住所を引数に指定してcodeAddress()関数を実行
-        codeAddress(address);
+    var getMap = (function () {
+      function codeAddress(address) {
+        // geocoder.geocode()メソッドを実行 
+        geocoder.geocode({
+          'address': address
+        }, function (results, status) {
+          // ジオコーディングが成功した場合
+          if (status == google.maps.GeocoderStatus.OK) {
+            // 変換した緯度・経度情報を地図の中心に表示
+            map.setCenter(results[0].geometry.location);
+            //☆表示している地図上の緯度経度
+            document.getElementById('lat').value = results[0].geometry.location.lat();
+            document.getElementById('lng').value = results[0].geometry.location.lng();
+            // マーカー設定
+            if (marker) {
+              marker.setMap(null);
+            }
+            marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+            });
+            // ジオコーディングが成功しなかった場合
+          } else {
+            console.log('Geocode was not successful for the following reason: ' + status);
+          }
+        });
       }
-      //読み込まれたときに地図を表示
-      window.onload = function(){
-        // フォームに入力された住所情報を取得
-        var address = document.getElementById("address").value;
-        // 取得した住所を引数に指定してcodeAddress()関数を実行
-        codeAddress(address);
-      }
-    }
-  };
-})();
-getMap.getAddress();
+      //inputのvalueで検索して地図を表示
+      return {
+        getAddress: function () {
+          // ボタンに指定したid要素を取得
+          var button = document.getElementById("map_button");
+          // ボタンが押された時の処理
+          button.onclick = function () {
+            // フォームに入力された住所情報を取得
+            var address = document.getElementById("address").value;
+            // 取得した住所を引数に指定してcodeAddress()関数を実行
+            codeAddress(address);
+          }
+          //読み込まれたときに地図を表示
+          window.onload = function () {
+            // フォームに入力された住所情報を取得
+            var address = document.getElementById("address").value;
+            // 取得した住所を引数に指定してcodeAddress()関数を実行
+            codeAddress(address);
+          }
+        }
+      };
+    })();
+    getMap.getAddress();
   }
 </script>
-  </script>
