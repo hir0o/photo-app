@@ -1,17 +1,8 @@
-  <div class="search">
+ <div class="search">
   <%= form_tag(posts_path,:method => 'get',class: "search__item") do %>
     <%= text_field_tag :search,"", placeholder: "キーワードで検索", class: "search__item__input" %>
     <%# <%= submit_tag '検索', :name => nil %>
   <% end %>
 </div>
   
-
-  <%# ロジックを、ヘルパーに移す %>
-  <% if @tag_name %>
-    <%= render 'posts/list', title: @tag_name, posts: @posts %>
-  <% elsif @search %>
-    <%= render 'posts/list', title: @search, posts: @posts %>
-  <% else %>
-    <%= render 'posts/list', title: "投稿一覧", posts: @posts %>
-  <% end %>
-  
+  <%= render 'posts/list', title: post_list_title, posts: @posts %>

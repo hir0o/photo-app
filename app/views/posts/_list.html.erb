@@ -1,6 +1,12 @@
 <h3><%= title %></h3>
 
-<ul class="post-list" id="post-list">
-  <%= render 'posts/pagenate', posts: posts %>
-</ul>
-<%= link_to_next_page posts, 'つづきを見る', remote: true, id: 'more_link' unless posts.nil? %>
+<% if posts.present? %>
+  <ul class="post-list" id="post-list">
+    <%= render 'posts/pagenate', posts: posts %>
+  </ul>
+  <%= link_to_next_page posts, 'つづきを見る', remote: true, id: 'more_link' unless posts.nil? %>
+<% else %>
+
+  <h4 class="tac">投稿が見つかりませんでした。</h4>
+  
+<% end %>

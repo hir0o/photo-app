@@ -92,6 +92,7 @@ h3 {
 }
 
 .form {
+  margin-top: 2rem;
   position: relative;
   &-box {
     position: relative;
@@ -244,13 +245,12 @@ h2 {
   max-width: 580px;
   width: 95%;
   background: #ffffff;
-  margin: 0 auto 0;
+  margin: 2rem auto 0;
   padding: 2rem 5rem;
 }
 
 .container {
-  padding: 2rem 0;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 50px);
 }
 
 // post new

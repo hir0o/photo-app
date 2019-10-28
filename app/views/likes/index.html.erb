@@ -1,9 +1,7 @@
-<div class="container">
-  <%= render 'users/profile', user: @user %>
+<%= render 'users/profile', user: @user %>
 
-  <% if @posts.present? %>
-    <%= render 'posts/list', title: "お気に入り", posts: @posts %>
-  <% else %>
-    <h4 class="tac">お気に入りはまだありません</h4>
-  <% end %>
-</div>
+<% if @posts.present? %>
+  <%= render 'posts/list', title: "お気に入り", posts: @posts %>
+<% else %>
+  <h4 class="tac">お気に入りはまだありません</h4>
+<% end %>

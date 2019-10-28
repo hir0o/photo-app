@@ -1,9 +1,6 @@
-<div class="container">
-
   <h3><%= title %></h3>
   <ul class="user-list" id="user-list">
     <%= render 'users/pagenate', users: users %>
   </ul>
 
   <%= link_to_next_page users, 'つづきを見る', remote: true, id: 'more_link' unless users.nil? %>
-</div>

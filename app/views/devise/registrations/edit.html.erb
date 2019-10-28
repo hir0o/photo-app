@@ -1,4 +1,3 @@
-<div class="container">
 <div class="box form">
 <h2>ユーザー情報編集</h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -44,7 +43,6 @@
 
 <p class="tac"><%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: "account-delete-btn" %></p>
 <%= link_to "戻る", :back %>
-</div>
 </div>
 
 <script>
