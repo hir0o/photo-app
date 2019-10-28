@@ -9,10 +9,10 @@ default: &default
 
 production:
   <<: *default
-  host: photo-app-db.cftvcpfhzwuf.ap-northeast-1.rds.amazonaws.com
-  database: photo-app
-  username: postgres
-  password: Yakiniku11
+  host: <%= Rails.application.credentials.rds[:host] %>
+  database: <%= Rails.application.credentials.rds[:database] %>
+  username: <%= Rails.application.credentials.rds[:username] %>
+  password: <%= Rails.application.credentials.rds[:password] %>
 
 development:
   <<: *default
