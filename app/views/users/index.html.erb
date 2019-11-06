@@ -1,9 +1,3 @@
-  <div class="search">
-  <%= form_tag(users_path,:method => 'get',class: "search__item") do %>
-    <%= text_field_tag :search,"", placeholder: "キーワードで検索", class: "search__item__input" %>
-    <%# <%= submit_tag '検索', :name => nil %>
-  <% end %>
-</div>
-
+<%= render 'layouts/serch', placeholder: serch_placeholder %>
 <%= render  'profile', user: @user if @user %>
 <%= render 'list', users: @users, title: user_list_title %>
