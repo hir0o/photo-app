@@ -1,8 +1,2 @@
- <div class="search">
-  <%= form_tag(posts_path,:method => 'get',class: "search__item") do %>
-    <%= text_field_tag :search,"", placeholder: "キーワードで検索", class: "search__item__input" %>
-    <%# <%= submit_tag '検索', :name => nil %>
-  <% end %>
-</div>
-  
-  <%= render 'list', title: post_list_title, posts: @posts %>
+<%= render 'layouts/serch', placeholder: serch_placeholder %>
+<%= render 'list', title: post_list_title, posts: @posts %>
