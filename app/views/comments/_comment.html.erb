@@ -6,7 +6,7 @@
       <span class="comment-list--item__date" id="is_edited_<%= comment.id %>"><%= edited?(comment) %></span>
       <% if current_user?(comment.user) %>
         <%= link_to "編集", edit_post_comment_path(id: comment.id, post_id: comment.post.id), method: :get, class: "comment-list--item__edit", remote: true %>
-        <%= link_to "削除", post_comment_path(id: comment.id, post_id: comment.post.id), method: :delete, class: "comment-list--item__destroy", remote: true %>
+        <%= link_to "削除", post_comment_path(id: comment.id, post_id: comment.post.id), method: :delete, class: "comment-list--item__destroy", remote: true, data: {confirm: "削除しますか？"}  %>
       <% end %>
       <span id="comment_edit_area_<%= comment.id %>">
         <p><%= comment.content %></p>
