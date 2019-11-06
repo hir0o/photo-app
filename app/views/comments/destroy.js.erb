@@ -1,3 +1,3 @@
 $("#comment_list_<%= @comment.id %>").remove();
 $("#flash-con").html("<%= j(render 'layouts/flash') %>");
-$(".comment_count").html("<%= j(render 'comments/comment_count', post: @post ) %>");
+$(".count").html("<%= j(render 'comments/count', post: @post ) %>");

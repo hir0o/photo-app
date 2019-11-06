@@ -42,7 +42,7 @@
               <li class="activity-list__item">
                 <%= image_tag 'comment.svg', class: "comment-icon" %>
                 <span class="comment_count">
-                  <%= render 'comments/comment_count', post: @post %>
+                  <%= render 'comments/count', post: @post %>
                 </span>
               </li>
               <li class="activity-list__item">
@@ -84,7 +84,7 @@
             <div class="comment-box">
               <% if user_signed_in? %>
                 <%= image_tag current_user.profile_image.url, class: "profile-image", size: "80"%>
-                <%= render 'comments/comment_form', comment: @comment, post: @post %>
+                <%= render 'comments/form', comment: @comment, post: @post %>
               <% else %>
                 <div class="request-login">
                   <%= link_to "ログインしてコメントを残す。", user_session_path ,
