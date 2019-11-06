@@ -31,10 +31,6 @@
   <div class="field">
     <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "現在のパスワード*" %>
   </div>
-  
-  <div class="field">
-    <%= f.text_area :profile, autofocus: true, placeholder: "プロフィール(100字)" %>
-  </div>
 
   <div class="actions">
     <%= f.submit "Update" %>
@@ -45,28 +41,4 @@
 <%= link_to "戻る", :back %>
 </div>
 
-<script>
-'use stript'; {
-  const fileInput = document.getElementById('inputProfile');
-  const previewInner = document.getElementById('profilePreviewInner')
-  // プロフィール画像を選択したら、画像が変わる
-  fileInput.addEventListener('change', function (evt) {
-    document.getElementById("profile-image").style.display="none";
-    if (document.getElementById('profilePreviewPicture') != null) {
-      while (previewInner.firstChild) {
-        previewInner.removeChild(previewInner.firstChild);
-      }
-    }
-    const file = fileInput.files[0];
-    console.log(file)
-    var blobUrl = window.URL.createObjectURL(file);
-    console.log(blobUrl)
-    var img = document.createElement("img");
-    img.setAttribute("src", blobUrl);
-    img.setAttribute("class", "profile-preview-picture");
-    img.setAttribute("id", "profilePreviewPicture");
-    previewInner.appendChild(img);
-  });
-}
-
-</script>
+<%= javascript_include_tag('user_edit') %>

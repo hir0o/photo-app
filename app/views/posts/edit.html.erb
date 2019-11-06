@@ -14,6 +14,8 @@
 </div>
 <% end %>
 
+<div class="form-box">
+
 <div class="map-serch">
   <form onsubmit="return false;">
     <input type="text" id="address" class="map-serch__input" placeholder="場所を検索するか、地図をクリックしてください。">
@@ -62,170 +64,15 @@
     <%= f.submit "編集を反映する", class: "btn btn-primary" %>
   </div>
 <% end %>
-
+</div>
 </div>
 
-
-  <script>
-  'use stript';
-  {
-    const fileArea = document.getElementById('drag-drop-area');
-    const fileInput = document.getElementById('file-picture');
-    const preview = document.getElementById('preview');
-    const previewInner = document.getElementById("preview-inner")
-
-    fileArea.addEventListener('dragover', function(evt){
-      evt.preventDefault();
-      fileArea.classList.add('dragover');
-    });
-    fileArea.addEventListener('dragleave', function(evt){
-        evt.preventDefault();
-        fileArea.classList.remove('dragover');
-    });
-    // droした時
-    fileArea.addEventListener('drop', function(evt){
-        evt.preventDefault();
-        fileArea.classList.remove('dragenter');
-        preview.classList.add('preview__on');
-        if (document.getElementById('previewPicture') != null) {
-          while (previewInner.firstChild) {
-            previewInner.removeChild(previewInner.firstChild);
-          }
-        }
-        var files = evt.dataTransfer.files;
-        fileInput.files = files;
-        filePreview(files);
-        console.log(fileInput.files[0]);
-    });
-    // 写真を選択からinputした場合
-    fileInput.addEventListener('change', function(evt) {
-        if (document.getElementById('previewPicture') != null) {
-          while (previewInner.firstChild) {
-            previewInner.removeChild(previewInner.firstChild);
-          }
-        }
-      const files = fileInput.files;
-      filePreview(files);
-    });
-    // fileをプレビューする関数
-    function filePreview(files) {
-      preview.classList.add('preview__on')
-      for (let i = 0; i < files.length; i ++ ) {
-        var imageFile = files[i];
-        var blobUrl = window.URL.createObjectURL(imageFile);
-        console.log(blobUrl)
-        var img = document.createElement("img");
-        img.setAttribute("src", blobUrl);
-        img.setAttribute("class", "preview-picture");
-        img.setAttribute("id", "previewPicture");
-        previewInner.appendChild(img);
-      }
-    }
-
-    $("#edit-picture-btn").on("click", function(){
-      $("#edit-picture").remove();
-      $("#edit-picture-container").show();
-      
-    });
-
-
-  var mapOptions = {
-      zoom: 11,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: {
-        lat: <%= @post.latitude %>,
-        lng: <%= @post.longitude %>
-      },
-      mapTypeControl: false,
-      fullscreenControl: false, //全画面表示コントロール
-      streetViewControl: false, //ストリートビュー コントロール
-      zoomControl: true, //ズーム コントロール
-    };
-
-var map = new google.maps.Map(document.getElementById("map-camvas"), mapOptions);
-
-
-
-
-var getMap = (function() {
-  function codeAddress(address) {
-    // google.maps.Geocoder()コンストラクタのインスタンスを生成
-    var geocoder = new google.maps.Geocoder();
- 
-    // 地図を表示させるインスタンスを生成
-    var map = new google.maps.Map(document.getElementById("map-camvas"), mapOptions);
-     
-    //マーカー変数用意
-    var marker;
-     
-    // geocoder.geocode()メソッドを実行 
-    geocoder.geocode( { 'address': address}, function(results, status) {
-       
-      // ジオコーディングが成功した場合
-      if (status == google.maps.GeocoderStatus.OK) {
-        // 変換した緯度・経度情報を地図の中心に表示
-        map.setCenter(results[0].geometry.location);
-        //☆表示している地図上の緯度経度
-        document.getElementById('lat').value=results[0].geometry.location.lat();
-        document.getElementById('lng').value=results[0].geometry.location.lng();
-        // マーカー設定
-        marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-        });
-       
-      // ジオコーディングが成功しなかった場合
-      } else {
-        console.log('Geocode was not successful for the following reason: ' + status);
-      }
-     
-    });
-    // マップをクリックで位置変更
-    map.addListener('click', function(e) {
-      getClickLatLng(e.latLng, map);
-    });
-    function getClickLatLng(lat_lng, map) {
-      //☆表示している地図上の緯度経度
-      document.getElementById('lat').value=lat_lng.lat();
-      document.getElementById('lng').value=lat_lng.lng();
-      // マーカーを設置
-      console.log(marker)
-      if (marker) {
-        marker.setMap(null);
-      }
-      
-      marker = new google.maps.Marker({
-        position: lat_lng,
-        map: map
-      });
-      // 座標の中心をずらす
-      map.panTo(lat_lng);
-    }
-  }
-
-  //inputのvalueで検索して地図を表示
-  return {
-    getAddress: function() {
-      // ボタンに指定したid要素を取得
-      var button = document.getElementById("map_button");
-      // ボタンが押された時の処理
-      button.onclick = function() {
-        // フォームに入力された住所情報を取得
-        var address = document.getElementById("address").value;
-        // 取得した住所を引数に指定してcodeAddress()関数を実行
-        codeAddress(address);
-      }
-      //読み込まれたときに地図を表示
-      window.onload = function(){
-        // フォームに入力された住所情報を取得
-        var address = document.getElementById("address").value;
-        // 取得した住所を引数に指定してcodeAddress()関数を実行
-        codeAddress(address);
-      }
-    }
-  };
-})();
-getMap.getAddress();
-  }
+<script>
+var center = {
+  lat: <%= @post.latitude %>,
+  lng: <%= @post.longitude %>
+}
 </script>
-  </script>
+<%= javascript_include_tag('map_post') %>
+<%= javascript_include_tag('file_preview') %>
+<%= javascript_include_tag('remove_cover') %>
