@@ -1,18 +1,15 @@
 <div class="box form">
 <h2>投稿フォーム</h2>
 
-
 <%= render "layouts/error_message", object: @post %>
-
 
 <div class="form-box">
 <div class="map-serch">
   <form onsubmit="return false;">
     <input type="text" id="address" class="map-serch__input" placeholder="場所を検索するか、地図をクリックしてください。">
-    <button style="hidden" id="map_button"></button>
+    <button type="hidden" id="map_button"></button>
   </form>
 </div>
-
 
 <%= form_for(@post, class: "form") do |f| %>
   <%= f.text_field :title, placeholder: "タイトル" %>
@@ -44,12 +41,6 @@
 <% end %>
 </div>
 </div>
-
-<style>
-.field_with_errors {
-  display: none;
-}
-</style>
 
 <script>
 var center = {
