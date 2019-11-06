@@ -1,6 +1,6 @@
 class Like < ApplicationRecord
   belongs_to :post
   belongs_to :user
-  # 一人が一つの投稿に対して１LIKEだけ
+  has_many :like_posts, through: :likes, source: 'post'
   validates_uniqueness_of :post_id, scope: :user_id
 end

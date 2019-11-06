@@ -16,9 +16,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    if current_user
-      current_user.footprints.create(post_id: @post.id)
-    end
+    current_user.footprints.create(post_id: @post.id) if current_user
     @like = Like.new
     @comment = Comment.new
     @comments = @post.comments
@@ -41,7 +39,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(posts_params)
-      redirect_to root_path
+      redirect_to current_user, flash: {success: "投稿を編集しました。"}
     else
       render :edit
     end
@@ -56,9 +54,20 @@ class PostsController < ApplicationController
   def map
     @posts = Post.all
   end
-  
+
+  def like
+    posts = Post.all.includes(:user, :likes, :liked_users).find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    @posts = Kaminari.paginate_array(posts).page(params[:page]).per(PER)
+  end
+
+  def comment
+    posts = Post.all.includes(:user, :likes, :liked_users).find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
+    @posts = Kaminari.paginate_array(posts).page(params[:page]).per(PER)
+  end
+
+
   private
-  
+
     def posts_params
       params.require(:post).permit(
         :title, :tag_list, {pictures: []}, :address, :latitude, :longitude, :description

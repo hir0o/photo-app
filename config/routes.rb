@@ -16,6 +16,6 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create edit update destroy]
   end
 
-  get'/map',to: 'posts#map'
-
+  get'/map',  to: 'posts#map'
+  get'/like', to: 'posts#like'
 end

@@ -26,7 +26,7 @@
 
 <%= form_for(@post, class: "form") do |f| %>
   <%= f.text_field :title, placeholder: "タイトル" %>
-  <%= f.text_field :tag_list, value: @post.tag_list, class: "form-control", placeholder: "タグ（カンマ区切り）" %>
+  <%= f.text_field :tag_list, value: @post.tag_list.join(","), class: "form-control", placeholder: "タグ（カンマ区切り）" %>
   <%= f.text_field :latitude, placeholder: "軽度", id: "lat", type: "hidden" %>
   <%= f.text_field :longitude, placeholder: "緯度", id: "lng", type:"hidden" %>
 
