@@ -15,7 +15,7 @@ production:
 
 development:
   <<: *default
-  database: myapp_development
+  database: photo-app_development
 
 test:
   <<: *default
