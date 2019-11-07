@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#index'
+  resources :rankings, only: %i[index]
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -11,11 +12,12 @@ Rails.application.routes.draw do
      end
   end
   resources :relationships, only: %i[create destroy]
-  resources :posts, only: %i[index new show create update destroy search edit] do
+  resources :posts, only: %i[index new show create update destroy edit] do
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create edit update destroy]
   end
-
-  get'/map',  to: 'posts#map'
-  get'/like', to: 'posts#like'
+  get'/map',       to: 'posts#map'
+  get 'rankings/like',  to: 'rankings#like'
+  get 'rankings/comment',  to: 'rankings#comment'
+  get 'rankings/view',  to: 'rankings#view'
 end

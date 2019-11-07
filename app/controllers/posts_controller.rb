@@ -55,17 +55,6 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def like
-    posts = Post.all.includes(:user, :likes, :liked_users).find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
-    @posts = Kaminari.paginate_array(posts).page(params[:page]).per(PER)
-  end
-
-  def comment
-    posts = Post.all.includes(:user, :likes, :liked_users).find(Like.group(:post_id).order('count(post_id) desc').limit(5).pluck(:post_id))
-    @posts = Kaminari.paginate_array(posts).page(params[:page]).per(PER)
-  end
-
-
   private
 
     def posts_params
