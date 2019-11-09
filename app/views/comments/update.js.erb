@@ -3,5 +3,5 @@
   $("#is_edited_<%= @comment.id %>").html("<%= j(render 'comments/is_edited', comment: @comment) %>");
   $("#flash-con").html("<%= j(render 'layouts/flash') %>");
 <% else %>
-  $("#comment_edit_area_<%= @comment.id %>").replaceWith("<%= j(render 'comments/edit_comment_form', comment: @comment, post: @post) %>");
+  $("#comment_edit_area_<%= @comment.id %>").replaceWith("<%= j(render 'comments/edit_form', comment: @comment, post: @post) %>");
 <% end %>

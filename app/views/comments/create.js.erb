@@ -1,5 +1,5 @@
 $("#comments_area").append("<%= j(render 'comments/comment', comment: @comment) %>")
 $("#flash-con").html("<%= j(render 'layouts/flash') %>")
-$(".comment_count").html("<%= j(render 'comments/comment_count', post: @post ) %>");
+$(".count").html("<%= j(render 'comments/count', post: @post ) %>");
 $("#comment-error").html("<%= j(render 'layouts/error_message', object: @comment) %>")
 $("#comment_content").val('')
