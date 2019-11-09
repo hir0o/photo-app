@@ -77,4 +77,4 @@ gem 'devise-i18n-views'
 gem "gmaps4rails"
 gem "geocoder"
 gem 'dotenv-rails'
-# gem 'fog'
+gem 'fog-aws'

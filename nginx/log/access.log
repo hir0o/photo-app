@@ -5572,3 +5572,5 @@
 172.21.0.1 - - [07/Nov/2019:05:24:39 +0000] "GET /posts HTTP/1.1" 200 11831 "http://localhost/rankings/like" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36"
 172.21.0.1 - - [07/Nov/2019:05:24:41 +0000] "GET /posts/2 HTTP/1.1" 200 8338 "http://localhost/posts" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36"
 172.21.0.1 - - [07/Nov/2019:05:24:43 +0000] "GET /posts/2 HTTP/1.1" 304 0 "http://localhost/posts" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36"
+172.18.0.1 - - [09/Nov/2019:06:21:29 +0000] "GET /users/sign_up HTTP/1.1" 200 8323 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36"
+172.18.0.1 - - [09/Nov/2019:06:21:30 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://localhost/users/sign_up" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36"
