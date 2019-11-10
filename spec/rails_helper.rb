@@ -31,6 +31,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.include Capybara::DSL
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_headless
   end
@@ -70,21 +71,19 @@ RSpec.configure do |config|
     driver = Capybara::Selenium::Driver.new(app, opts)
   end
   
-  RSpec.configure do |config|
-    config.after do |example|
-      if example.metadata[:type] == :feature and example.exception
-          page.save_screenshot 'screenshot/テスト失敗時スクリーンショット.png'
-      end 
+  config.after do |example|
+    if example.metadata[:type] == :feature and example.exception
+        page.save_screenshot 'screenshot/テスト失敗時スクリーンショット.png'
     end 
+  end 
 
-    config.before(:each, type: :system) do
-      driven_by :rack_test
-    end
-    
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
   
-    config.before(:each, type: :system, js: true) do
-      driven_by :selenium_remote
-      host! "http://#{Capybara.server_host}:#{Capybara.server_port}"
-    end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_remote
+    host! "http://#{Capybara.server_host}:#{Capybara.server_port}"
   end
 end
