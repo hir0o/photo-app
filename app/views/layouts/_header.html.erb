@@ -24,6 +24,36 @@
         
       </ul>
     </div>
+    <div id="nav-drawer">
+      <input id="nav-input" type="checkbox" class="nav-unshown">
+      <label id="nav-open" for="nav-input"><span></span></label>
+      <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+      <div id="nav-content">
+        <ul class="header-list">
+          <li class="header-list__item"><%= link_to "トップ", root_path %></li>
+          <li class="header-list__item"><%= link_to "すべての投稿", posts_path %></li>
+          <li class="header-list__item"><%= link_to "マップで見る", map_path %></li>
+          <li class="header-list__item"><%= link_to "すべてのユーザー", users_path %></li>
+        <% unless current_user %>
+          <li class="header-list__item"><%= link_to "会員登録", new_user_registration_path %></li>
+          <li class="header-list__item"><%= link_to "ログイン", new_user_session_path %></li>
+        <% else %>
+          <div class="header-list__item menu__single">
+            <div class="accbox">
+              <label class="label" for="label1"><%= current_user.name %></label>
+              <input type="checkbox" id="label1" class="cssacc" />
+              <div class="accshow">
+                <li class="menu-lavel__item"><%= link_to "ユーザーページ", current_user %></li>
+                <li class="menu-lavel__item"><%= link_to "各種設定", edit_user_registration_path %></li>
+                <li class="menu-lavel__item"><%= link_to "ログアウト", destroy_user_session_path, method: "delete" %></li>
+              </div>
+            </div>
+          </div>
+          <li class="header-list__item"><%= link_to "投稿する", new_post_path, data: {"turbolinks"=>false} %></li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
   </header>
   <div id="flash-con">
     <%= render 'layouts/flash' %>
