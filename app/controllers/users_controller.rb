@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  USER_PER = 3
+  USER_PER = 12
 
   def index
     if @search = params[:search]
