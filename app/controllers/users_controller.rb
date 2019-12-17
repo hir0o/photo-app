@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     if @search = params[:search]
-      @users = User.search(params[:search]).page(params[:page]).per(USER_PER)
+      @users = User.search(params[:search]).order('created_at DESC').page(params[:page]).per(USER_PER)
     else
       @users = User.page(params[:page]).per(USER_PER)
     end

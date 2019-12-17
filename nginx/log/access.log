@@ -5353,3 +5353,5 @@
 172.19.0.1 - - [17/Dec/2019:05:08:39 +0000] "GET /posts HTTP/1.1" 200 10737 "http://127.0.0.1/map" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
 172.19.0.1 - - [17/Dec/2019:05:18:43 +0000] "GET /posts HTTP/1.1" 200 10737 "http://127.0.0.1/users/edit" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
 172.19.0.1 - - [17/Dec/2019:05:18:43 +0000] "GET /favicon.ico HTTP/1.1" 200 0 "http://127.0.0.1/posts" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+172.18.0.1 - - [17/Dec/2019:06:30:26 +0000] "GET / HTTP/1.1" 200 8287 "-" "-"
+172.18.0.1 - - [17/Dec/2019:06:30:27 +0000] "GET /HNAP1/ HTTP/1.1" 404 31648 "-" "-"
