@@ -8,8 +8,8 @@ CarrierWave.configure do |config|
   config.fog_directory  = 'mk-portfolio-img'
   config.fog_credentials = {
     provider: 'AWS',
-    aws_access_key_id: Rails.application.credentials.aws[:access_key_id],
-    aws_secret_access_key: Rails.application.credentials.aws[:secret_access_key],
-    region: Rails.application.credentials.aws[:region]
+    aws_access_key_id: Rails.application.credentials.s3[:access_key_id],
+    aws_secret_access_key: Rails.application.credentials.s3[:secret_access_key],
+    region: Rails.application.credentials.s3[:region]
   }
 end

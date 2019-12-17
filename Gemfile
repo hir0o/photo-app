@@ -78,3 +78,4 @@ gem "gmaps4rails"
 gem "geocoder"
 gem 'dotenv-rails'
 gem 'fog-aws'
+gem 'faker'

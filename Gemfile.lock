@@ -102,6 +102,8 @@ GEM
     factory_bot_rails (4.11.1)
       factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
+    faker (2.9.0)
+      i18n (>= 1.6, < 1.8)
     ffi (1.11.1)
     fog-aws (3.5.2)
       fog-core (~> 2.1)
@@ -296,6 +298,7 @@ DEPENDENCIES
   devise-i18n-views
   dotenv-rails
   factory_bot_rails (~> 4.11)
+  faker
   fog-aws
   geocoder
   gmaps4rails
