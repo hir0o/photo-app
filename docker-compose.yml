@@ -9,7 +9,6 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/photo-app
-      - tmp-data:/photo-app/tmp
       - public-data:/photo-app/public
     ports:
       - "3000:3000"
@@ -25,7 +24,6 @@ services:
       context: containers/nginx
     volumes:
       - ./nginx/log:/var/log/nginx
-      - tmp-data:/photo-app/tmp
       - public-data:/photo-app/public
     depends_on:
       - web
@@ -33,6 +31,5 @@ services:
       - 80:80
 volumes:
   public-data:
-  tmp-data:
   postgresql-data:
     driver: local
