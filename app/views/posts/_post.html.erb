@@ -1,6 +1,6 @@
 <li class="post-list__item" id="js-post-list-item-<%= post.id %>">
 <%= link_to(post, class: "post-link", remote: true) do %>
-<div class="post-image post-image-<%= post.id %>">
+<div class="post-image post-image-<%= post.id %>" style='background-image: url("<%= post.pictures[0].thumb.url %>")'>
 </div>
 <% end %>
 <div class="hover">
@@ -28,8 +28,3 @@
   </div>
 </div>
 </li>
-<style>
-  .post-image-<%= post.id %> {
-    background-image: url("<%= post.pictures[0].thumb.url %>")
-  }
-</style>
