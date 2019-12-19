@@ -1,3 +1,8 @@
+var center = {
+  lat: 35.6587096,
+  lng: 139.7452492
+};
+
 var mapOptions = {
   zoom: 11,
   mapTypeId: google.maps.MapTypeId.ROADMAP,
