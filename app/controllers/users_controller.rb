@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if params[:q]
       @users = @q.result(distinct: true).order('created_at DESC').page(params[:page]).per(USER_PER)
     else
-      @users = User.page(params[:page]).per(USER_PER).order('created_at DESC')
+      @users = User.order('created_at DESC').page(params[:page]).per(USER_PER)
     end
   end
 
