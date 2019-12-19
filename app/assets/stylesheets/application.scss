@@ -296,8 +296,9 @@ header {
     width: 95%;
     max-width: 900px;
     margin: 0 auto;
+    display: flex;
     &__input {
-      width: 100%;
+      width: 80%;
       padding: 0.5rem;
       font-size: 1rem;
     }

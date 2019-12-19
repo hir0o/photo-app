@@ -2,8 +2,10 @@ class UsersController < ApplicationController
   USER_PER = 12
 
   def index
-    if @search = params[:search]
-      @users = User.search(params[:search]).page(params[:page]).per(USER_PER)
+    @q = User.ransack(params[:q])
+    if params[:q]
+      q = User.ransack(params[:q])
+      @users = q.result(distinct: true).order('created_at DESC').page(params[:page]).per(USER_PER)
     else
       @users = User.page(params[:page]).per(USER_PER).order('created_at DESC')
     end
