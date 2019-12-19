@@ -3,41 +3,37 @@ require 'rails_helper'
 RSpec.describe "投稿のリクエストテスト", type: :request do
   describe "/posts にアクセスすると" do
     before do
-      visit posts_path
+      get posts_path
     end
 
     it "投稿一覧ページが表示される" do
-      expect(page).to have_content('投稿一覧')
+      expect(response.status).to eq(200)
     end
   end
 
   describe "/map にアクセスすると" do
     before do
-      visit '/map'
+      get '/map'
     end
 
     it "マップ一覧ページが表示される" do
-      expect(page).to have_content('マップで見る')
+      expect(response.status).to eq(200)
     end
   end
 
   describe "ログインしている場合" do
     before do
-      FactoryBot.create(:user)
-      visit new_user_session_path
-      fill_in 'メールアドレス', with: 'test@example.com'
-      fill_in 'パスワード', with: 'password'
-      click_button 'Log in'
+      user = FactoryBot.create(:user1)
+      sign_in user
     end
 
     describe "/posts/newにアクセスすると" do
       before do
-        visit '/posts/new'
+        get '/posts/new'
       end
 
       it "投稿ページが表示される" do
-        p page
-        expect(page).to have_content('投稿フォーム')
+        expect(response.status).to eq(200)
       end
     end
   end
@@ -45,11 +41,11 @@ RSpec.describe "投稿のリクエストテスト", type: :request do
   describe "ログインしていない場合" do
     describe "/posts/newにアクセスすると" do
       before do
-        visit '/posts/new'
+        get '/posts/new'
       end
 
-      it "エラーが表示される" do
-        expect(page).to have_content('アカウント登録もしくはログインしてください。')
+      it "リダイレクトされる" do
+        expect(response.status).to eq(302)
       end
     end
   end
