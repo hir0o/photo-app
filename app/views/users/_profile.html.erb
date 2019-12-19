@@ -1,4 +1,4 @@
-<div class="user-canopy">
+<div class="user-canopy" style='background-image: url("<%= user.profile_image.url %>");'>
   <div class="user-box">
     <%= image_tag(user.profile_image.url, class: "user-box__image profile-image", size: "150") do %>
       <% if current_user?(user) %>
@@ -19,9 +19,3 @@
     <% end %>
   </ul>
   </div>
-
-<style>
-.user-canopy {
-    background-image: url("<%= user.profile_image.url %>");
-  }
-</style>
