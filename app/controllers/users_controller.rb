@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  before_action :serch
   USER_PER = 12
+  
 
   def index
     @q = User.ransack(params[:q])
@@ -37,4 +39,10 @@ class UsersController < ApplicationController
     @users = @user.followers.page(params[:page]).per(USER_PER)
     render 'index'
   end
+
+  private
+
+    def serch
+      @q = User.ransack(params[:q])
+    end
 end
