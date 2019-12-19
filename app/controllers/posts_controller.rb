@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create. destroy, new]
   def index
+    @q = Post.ransack(params[:q])
     if @tag_name = params[:tag_name]
       @posts = Post.tag_search(params[:tag_name]).page(params[:page]).per(PER)
-    elsif @search = params[:search]
-      @posts = Post.search(params[:search]).page(params[:page]).per(PER)
+    elsif params[:q]
+      @posts = @q.result.order('created_at DESC').page(params[:page]).per(PER)
     else
       @posts = Post.page(params[:page]).per(PER)
     end
@@ -15,6 +16,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    p "~"*100
     @post = Post.find(params[:id])
     if current_user
       current_user.footprints.create(post_id: @post.id)
@@ -51,6 +53,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash.now[:success] = "投稿を削除しました。"
+    p "-"*100
   end
 
   def map

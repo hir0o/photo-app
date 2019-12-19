@@ -43,32 +43,33 @@ end
 
 # リレーションシップ
 users = User.all
-user  = users.last
+user  = users.first
 following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow!(followed) }
 followers.each { |follower| follower.follow!(user) }
 
-# いいね
+# # いいね
 users = User.order(:created_at)
+posts = Post.order(:created_at)
 
-1.upto(10) do |i|
+0.upto(10) do |i|
   0.upto(10) do |n|
-    users[i].posts[0].likes.create(user_id: users[n].id)
+    posts[i].likes.create(user_id: users[n].id)
   end
 end
 
 # 回覧履歴
-1.upto(10) do |i|
+0.upto(10) do |i|
   0.upto(10) do |n|
-    users[i].posts[0].footprints.create(user_id: users[n].id)
+    posts[i].footprints.create(user_id: users[n].id)
   end
 end
 
 #コメント
-1.upto(10) do |i|
-  10.upto(10) do |n|
+0.upto(10) do |i|
+  0.upto(10) do |n|
     content = Faker::Lorem.sentence
-    users[i].comments.create(post_id: n, content: content)
+    users[n].comments.create(post_id: posts[i].id, content: content)
   end
 end

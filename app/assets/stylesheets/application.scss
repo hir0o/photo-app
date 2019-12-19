@@ -296,8 +296,9 @@ header {
     width: 95%;
     max-width: 900px;
     margin: 0 auto;
+    display: flex;
     &__input {
-      width: 100%;
+      width: 80%;
       padding: 0.5rem;
       font-size: 1rem;
     }
@@ -886,7 +887,7 @@ input[type="text"].edit-comment {
   color: #fff;
   margin-left: -1.4rem;
   font-size: .75rem;
-  top: 1.5rem;
+  top: -2.5rem;
   left: 0;
   white-space: nowrap;
   &__link {
@@ -894,7 +895,7 @@ input[type="text"].edit-comment {
   }
 }
 
-.footprint {
+.lav {
   position: relative;
   &-lavel {
   max-height: 250px;
@@ -954,7 +955,12 @@ input[type="text"].edit-comment {
   display: none;
 }
 
-.footprint:hover > .footprint-lavel {
+.lav:hover > .lav-lavel {
+  display: block;
+}
+
+
+.lav:hover > #like_list > .lav-lavel {
   display: block;
 }
 

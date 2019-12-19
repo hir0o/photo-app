@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, length: { maximum: 50 }
-  validates :profile, length: { maximum: 200 }
   has_many :posts, dependent: :destroy
   # ProfileImageアップローダーを紐付け
   mount_uploader :profile_image, ProfileImageUploader

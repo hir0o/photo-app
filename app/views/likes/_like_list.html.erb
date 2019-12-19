@@ -1,0 +1,12 @@
+<ul class="lav-lavel">
+  <% post.liked_users.each do |user| %>
+  <li class="lav-lavel__list">
+    <span>
+      <%= link_to(user, class: "lav-lavel__list--link") do %>
+        <%= image_tag user.profile_image.url, class: "profile-image", size: "25" %>
+        <span class="user-name"><%= user.name %></span>
+      <% end %>
+    </span>
+  </li>
+  <% end %>
+</ul>
