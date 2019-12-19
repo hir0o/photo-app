@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create. destroy, new]
   def index
+    @q = Post.ransack(params[:q])
     if @tag_name = params[:tag_name]
       @posts = Post.tag_search(params[:tag_name]).page(params[:page]).per(PER)
-    elsif @search = params[:search]
-      @posts = Post.search(params[:search]).page(params[:page]).per(PER)
+    elsif params[:q]
+      @posts = @q.result.order('created_at DESC').page(params[:page]).per(PER)
     else
       @posts = Post.page(params[:page]).per(PER)
     end

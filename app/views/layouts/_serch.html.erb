@@ -1,6 +1,6 @@
  <div class="search">
   <%= search_form_for @q, class: "search__item" do |f| %>
-    <%= f.text_field :name_eq, placeholder: serch_placeholder, class: "search__item__input" %>
+    <%= f.text_field serch_colmun, placeholder: serch_placeholder, class: "search__item__input" %>
     <%= f.submit "検索", class: "detail" %>
   <% end %>
 </div>

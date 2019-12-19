@@ -4,8 +4,7 @@ class UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     if params[:q]
-      q = User.ransack(params[:q])
-      @users = q.result(distinct: true).order('created_at DESC').page(params[:page]).per(USER_PER)
+      @users = @q.result(distinct: true).order('created_at DESC').page(params[:page]).per(USER_PER)
     else
       @users = User.page(params[:page]).per(USER_PER).order('created_at DESC')
     end
