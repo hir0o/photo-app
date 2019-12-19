@@ -6,23 +6,14 @@ default: &default
   password:
   pool: 5
 
-production:
-  <<: *default
-  host: <%= Rails.application.credentials.rds[:host] %>
-  database: <%= Rails.application.credentials.rds[:database] %>
-  username: <%= Rails.application.credentials.rds[:username] %>
-  password: <%= Rails.application.credentials.rds[:password] %>
-
 development:
   <<: *default
-  database: photo-app_development
+  database: myapp_development
+
+production:
+  <<: *default
+  database: myapp_pro
 
 test:
   <<: *default
   database: myapp_test
-
-production:
-  <<: *default
-  database: photo-app_production
-  username: photo-app
-  password: <%= ENV['PHOTO-APP_DATABASE_PASSWORD'] %>

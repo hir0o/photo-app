@@ -109,25 +109,19 @@
   </div>
 </div>
 
-<script>
-  $("#close").click(function() {
-    $("#modal").remove();
-    $("body").css("overflow", "visible");
+<%= javascript_include_tag('post_close') %>
+<script type="text/javascript">
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": <%= @post.latitude %>,
+        "lng": <%= @post.longitude %>,
+    "infowindow": '<p><%= @post.title %></p><p><%= @post.address %></p><p><%= link_to "Googleマップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{@post.latitude},#{@post.longitude}&iwloc=J",target: "_blank" %></p>'
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(13);
   });
 </script>
-
-  <script type="text/javascript">
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers([
-        {
-          "lat": <%= @post.latitude %>,
-          "lng": <%= @post.longitude %>,
-      "infowindow": '<p><%= @post.title %></p><p><%= @post.address %></p><p><%= link_to "Googleマップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{@post.latitude},#{@post.longitude}&iwloc=J",target: "_blank" %></p>'
-        }
-      ]);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      handler.getMap().setZoom(13);
-    });
-  </script>

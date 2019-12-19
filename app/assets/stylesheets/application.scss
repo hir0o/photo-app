@@ -31,7 +31,7 @@ li {
 
 h3 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 3rem 0 2rem;
   font-size: 2.5rem;
 }
 .tac {
@@ -49,7 +49,7 @@ h3 {
   border: 1px solid transparent;
   border-radius: 4px;
   width: 90%;
-  z-index: 100;
+  z-index: 500;
   opacity: 0;
   animation: 2s fadein;
   visibility: hidden;
@@ -296,8 +296,9 @@ header {
     width: 95%;
     max-width: 900px;
     margin: 0 auto;
+    display: flex;
     &__input {
-      width: 100%;
+      width: 80%;
       padding: 0.5rem;
       font-size: 1rem;
     }
@@ -711,20 +712,20 @@ input[type="submit"].follow-btn {
   border-radius: 0 0 10px 10px;
   pointer-events: none;
   transition: all .1s;
+  &--inner {
+    position: absolute;
+    bottom: 10px;
+  }
   &--user {
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 6rem;
-    left: 1rem;
+    margin-top: .25rem;
     &__name {
       margin-left: 1rem;
     }
   }
   &-stats__list {
-    position: absolute;
-    bottom: .5rem;
-    left: 1rem;
+    margin-top: 0.25rem;
     &__item {
       display: inline-block;
       .icon {

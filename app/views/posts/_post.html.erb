@@ -1,33 +1,30 @@
 <li class="post-list__item" id="js-post-list-item-<%= post.id %>">
 <%= link_to(post, class: "post-link", remote: true) do %>
-<div class="post-image post-image-<%= post.id %>">
+<div class="post-image post-image-<%= post.id %>" style='background-image: url("<%= post.pictures[0].thumb.url %>")'>
 </div>
 <% end %>
 <div class="hover">
-  <h4 class="post-title"><%= post.title %></h4>
-  <div class="hover--user">
-    <%= image_tag post.user.profile_image.url, class: "profile-image hover--user__image", size: "30" %>
-    <p class="hover--user__name"><%= post.user.name %></p>
+  <div class="hover--inner">  
+    <h4 class="post-title"><%= post.title %></h4>
+    <div class="hover--user">
+      <%= image_tag post.user.profile_image.url, class: "profile-image hover--user__image", size: "30" %>
+      <p class="hover--user__name"><%= post.user.name %></p>
+    </div>
+    <ul class="hover-stats__list">
+      <li class="hover-stats__list__item">
+        <%= image_tag 'comment_hw.svg', class: "icon" %>
+        <span class="comment_count">
+          <%= render 'comments/count', post: post %>
+        </span>
+      </li>
+      <li class="hover-stats__list__item">
+        <%=  image_tag 'good_hw.svg', class: "icon" %>
+        <span class="like_count">
+          <%= render 'likes/like_count', post: post %>
+        </span>
+      </li>
+      <li class="hover-stats__list__item"><%= image_tag 'eye_hw.svg', class: "icon eye-icon" %><%= post.footprints.count %></li>
+    </ul>
   </div>
-  <ul class="hover-stats__list">
-    <li class="hover-stats__list__item">
-      <%= image_tag 'comment_hw.svg', class: "icon" %>
-      <span class="comment_count">
-        <%= render 'comments/count', post: post %>
-      </span>
-    </li>
-    <li class="hover-stats__list__item">
-      <%=  image_tag 'good_hw.svg', class: "icon" %>
-      <span class="like_count">
-        <%= render 'likes/like_count', post: post %>
-      </span>
-    </li>
-    <li class="hover-stats__list__item"><%= image_tag 'eye_hw.svg', class: "icon eye-icon" %><%= post.footprints.count %></li>
-  </ul>
 </div>
 </li>
-<style>
-  .post-image-<%= post.id %> {
-    background-image: url("<%= post.pictures[0].thumb.url %>")
-  }
-</style>

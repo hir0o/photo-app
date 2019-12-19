@@ -1,5 +1,6 @@
  <div class="search">
-  <%= form_tag(posts_path,:method => 'get',class: "search__item") do %>
-    <%= text_field_tag :search,"", placeholder: placeholder, class: "search__item__input" %>
+  <%= search_form_for @q, class: "search__item" do |f| %>
+    <%= f.text_field :name_eq, placeholder: serch_placeholder, class: "search__item__input" %>
+    <%= f.submit "検索", class: "detail" %>
   <% end %>
 </div>
