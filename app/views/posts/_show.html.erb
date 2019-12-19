@@ -10,8 +10,8 @@
         <div class="edit-btn__v"></div>
         <ul class="edit-btn__list">
           <li class="edit-btn__list__item"><%= link_to "編集", edit_post_path(@post) %></li>
-          <li class="edit-btn__list__item"><%= link_to "投稿を削除する。",
-                     post_path(@post), method: "delete", remote: true, data: {confirm: "削除しますか？"} %></li>
+          <li class="edit-btn__list__item"><%= link_to "投稿を削除する",
+                     post_path(@post, post_id: @post.id), method: "delete", remote: true, data: {confirm: "削除しますか？"} %></li>
         </ul>
       </div>
       <% end %>

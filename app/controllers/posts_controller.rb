@@ -16,6 +16,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    p "~"*100
     @post = Post.find(params[:id])
     if current_user
       current_user.footprints.create(post_id: @post.id)
@@ -52,6 +53,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash.now[:success] = "投稿を削除しました。"
+    p "-"*100
   end
 
   def map
