@@ -12,7 +12,10 @@ development:
 
 production:
   <<: *default
-  database: myapp_pro
+  host: <%= Rails.application.credentials.rds[:host] %>
+  database: <%= Rails.application.credentials.rds[:database] %>
+  username: <%= Rails.application.credentials.rds[:username] %>
+  password: <%= Rails.application.credentials.rds[:password] %>
 
 test:
   <<: *default
