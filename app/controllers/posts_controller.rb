@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[create. destroy, new]
+  before_action :authenticate_user!, only: %i[create destroy new edit]
+  before_action :correct_user, only: %i[edit]
+  
   def index
     @q = Post.ransack(params[:q])
     if @tag_name = params[:tag_name]
@@ -16,7 +18,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    p "~"*100
     @post = Post.find(params[:id])
     if current_user
       current_user.footprints.create(post_id: @post.id)
@@ -65,5 +66,10 @@ class PostsController < ApplicationController
       params.require(:post).permit(
         :title, :tag_list, {pictures: []}, :address, :latitude, :longitude, :description
       )
+    end
+
+    def correct_user
+      @post = Post.find(params[:id])
+      redirect_to(root_url) unless @post.user == current_user
     end
 end
