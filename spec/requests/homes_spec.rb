@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe "リクエストのテスト", type: :request do
+describe "ホームのリクエストテスト", type: :request do
 
-  describe "ルートページにアクセスすると" do
+  describe "GET /" do
     before do
       get root_path
     end

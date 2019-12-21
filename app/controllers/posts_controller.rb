@@ -53,7 +53,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash.now[:success] = "投稿を削除しました。"
-    p "-"*100
   end
 
   def map
