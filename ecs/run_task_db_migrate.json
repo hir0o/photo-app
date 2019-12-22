@@ -1,0 +1,8 @@
+{
+  "containerOverrides": [
+    {
+      "name": "portforio-web",
+      "command": ["bundle", "exec", "rails", "db:migrate"]
+    }
+  ]
+}

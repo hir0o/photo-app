@@ -1,89 +1,82 @@
-
 version: 2
 jobs:
-  build:
+  test:
     docker:
-      - image: circleci/ruby:2.6.2
+      - image: circleci/ruby:2.6.2-node-browsers-legacy
+        environment:
+          RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          POSTGRES_DB: myapp_test
+      - image: circleci/postgres:11.5-alpine
     working_directory: ~/repo
     steps:
       - checkout
-      - run: 
-          name: bundle update
-          command: gem install bundler:2.0.2
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
+            - v2-dependencies-{{ checksum "Gemfile.lock" }}
+            - v2-dependencies- 
       - run:
-          name: install dependencies
+          name: Install Bundle
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-  build_image:
+          key: v2-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: DB Start-up
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+      - run: gem install bundler
+      - run: 
+          name: Run Rspec
+          command: bundle exec rspec
+  deploy:
     docker:
-      - image: docker:18.09.0
+      - image: circleci/python
     steps:
       - checkout
       - setup_remote_docker
       - run:
-          name: install aws cli
+          name: "Install AWS"
           command: |
-            apk add --no-cache --update py-pip
-            pip install awscli
+            sudo pip install awscli
+            aws --version
       - run:
-          name: login ecr
-          command: |
-            $(aws ecr get-login --no-include-email --region ap-northeast-1)
+          name: "Install jq"
+          command: sudo apt-get install -y jq
       - run:
-          name: build image
-          command: |
-            docker build -t ${ECR_DOMAIN}:$CIRCLE_SHA1 -t ${ECR_DOMAIN}:latest .
+          name: "Log in to AWS ECR"
+          command: $(aws ecr get-login --no-include-email --region ap-northeast-1)
       - run:
-          name: Push docker image
+          name: "Build Docker Image"
           command: |
-            docker push ${ECR_DOMAIN}:$CIRCLE_SHA1
-            docker push ${ECR_DOMAIN}:latest
-  # deploy:
-  #   docker:
-  #     - image: circleci/python:3.7
-  #   steps: 
-  #   - run:
-  #       name: install aws cli
-  #       command: |
-  #         sudo pip install awscli
-  #   - run:
-  #       name: download jq
-  #       command: |
-  #         wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
-  #         mv jq-linux64 jq
-  #   - run:
-  #       name: login
-  #       command: |
-  #         $(aws ecr get-login --no-include-email --region ap-northeast-1)
-  #   - run:
-  #       name: deploy
-  #       command: |
-  #         aws ecs --region ap-northeast-1 register-task-definition --family webapp-service --cli-input-json "$(aws ecs describe-task-definition --task-definition webapp-service --region ap-northeast-1 | jq '.taskDefinition | { containerDefinitions: .containerDefinitions }')"
-  #         aws ecs update-service --cluster sample-ecs-cluster --service webapp-service --task-definition webapp-service --region ap-northeast-1
+            docker build -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-web:$CIRCLE_SHA1 .
+      - run:
+          name: "Push Docker Image"
+          command: |
+            docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-web:$CIRCLE_SHA1
+      - run:
+          name: "DB Migrate"
+          command: |
+            aws ecs run-task --region ap-northeast-1 --cluster portfolio-claster --task-definition portfolio-task --overrides file://ecs/run_task_db_migrate.json
+      - run:
+          name: "Update Task"
+          command: |
+              aws ecs register-task-definition --family portfolio-task --cli-input-json --region ap-northeast-1 "$(aws ecs describe-task-definition --task-definition portfolio-task --region ap-northeast-1 | sed -e "s#$AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/portforio-web:.*\",#$AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/portforio-web:$CIRCLE_SHA1\",#g" | jq '.taskDefinition | { containerDefinitions: .containerDefinitions }')"
+      - run:
+          name: "Update Service"
+          command: |
+              aws ecs update-service --cluster portforio-claster --service portforio-service --task-definition portfolio-task --region ap-northeast-1
 workflows:
   version: 2
-  test:
+  test_and_deploy:
     jobs:
-      - build
-      - build_image:
+      - test
+      - deploy:
           requires:
-            - build
+            - test
           filters:
             branches:
               only: master
-      # - deploy:
-      #     requires:
-      #       - build_image
-      #     filters:
-      #       branches:
-      #         only: master
-
-
