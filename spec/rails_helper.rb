@@ -86,4 +86,9 @@ RSpec.configure do |config|
     driven_by :selenium_remote
     host! "http://#{Capybara.server_host}:#{Capybara.server_port}"
   end
+
+  config.include Devise::TestHelpers, :type => :controller
+
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } #support directoryをrequire
+  config.include RequestSpecHelper, type: :request #type: :requestのときにRequestHelperをinclude
 end

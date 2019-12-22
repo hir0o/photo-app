@@ -1,14 +1,13 @@
 require 'rails_helper'
 
-describe "リクエストのテスト", type: :request do
+describe "ホームのリクエストテスト", type: :request do
 
-  describe "ルートページにアクセスすると" do
+  describe "GET /" do
     before do
-      visit root_path
+      get root_path
     end
-    it "リクエストが正常に帰ってくる" do
-      expect(response).to have_http_status(200)
-      expect(page).to have_content('位置情報付きで投稿できる写真投稿サイトです。')
+    it "リクエストが成功すること" do
+      expect(response.status).to eq(200)
     end
   end
 end
