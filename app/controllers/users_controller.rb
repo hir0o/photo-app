@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
+  before_action :serch
   USER_PER = 12
+  
 
   def index
     @q = User.ransack(params[:q])
     if params[:q]
       @users = @q.result(distinct: true).order('created_at DESC').page(params[:page]).per(USER_PER)
     else
-      @users = User.page(params[:page]).per(USER_PER).order('created_at DESC')
+      @users = User.order('created_at DESC').page(params[:page]).per(USER_PER)
     end
   end
 
@@ -37,4 +39,10 @@ class UsersController < ApplicationController
     @users = @user.followers.page(params[:page]).per(USER_PER)
     render 'index'
   end
+
+  private
+
+    def serch
+      @q = User.ransack(params[:q])
+    end
 end
