@@ -18,4 +18,12 @@ module ApplicationHelper
       "キーワードでユーザーを検索"
     end
   end
+
+  def serch_colmun
+    if controller.controller_name == "posts"
+      :title_cont
+    elsif controller.controller_name == "users"
+      :name_cont
+    end
+  end
 end
