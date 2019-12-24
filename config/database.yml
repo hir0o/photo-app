@@ -20,4 +20,4 @@ production:
 test:
   <<: *default
   host: <%= ENV.fetch("DB_HOST") { 'db' } %>
-  database: <%= ENV.fetch("POSTGRES_DB") { 'myapp_test' } %>
+  database: myapp_test
