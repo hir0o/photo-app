@@ -23,4 +23,14 @@
 
 <%= render "devise/shared/links" %>
 
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.hidden_field :email ,value: "sample@example.com" %>
+        <%= f.hidden_field :password ,value: "password" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "かんたんログイン" %>
+      </div>
+    <% end %>
+
 </div>
