@@ -29,3 +29,6 @@
 
 # nginx log
 /nginx/log
+
+/public/uploads
+/.DS_Store
