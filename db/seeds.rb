@@ -2,14 +2,6 @@ Faker::Config.locale = :en
 
 PICTURE_NUM = 20
 
-# サンプルユーザー
-User.create!(
-  name:  "サンプル",
-  email: "sample@example.com",
-  password:              "password",
-  password_confirmation: "password"
- )
-
 1.upto(50) do |n|
   name  = Faker::TvShows::BreakingBad.character
   email = "sample-#{n}@example.com"
@@ -21,10 +13,17 @@ User.create!(
               )
 end
 
-users = User.order(:created_at).take(10)
+# サンプルユーザー
+sampe = User.create!(
+  name:  "サンプル",
+  email: "sample@example.com",
+  password:              "password",
+  password_confirmation: "password"
+ )
+
+users = User.order(:created_at).take(10).push(sampe)
 
 users.each.with_index(1) do |user, n|
-  p user.name
   #プロフィール画像の更新
   user.profile_image = open("#{Rails.root}/db/sample/profile/profile-#{n}.jpg")
   user.save
@@ -50,15 +49,13 @@ users.each.with_index(1) do |user, n|
 end
 
 # リレーションシップ
-users = User.all
-user  = users.first
+user  = users.last
 following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow!(followed) }
 followers.each { |follower| follower.follow!(user) }
 
 # # いいね
-users = User.order(:created_at)
 posts = Post.order(:created_at)
 
 0.upto(10) do |i|
