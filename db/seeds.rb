@@ -2,9 +2,17 @@ Faker::Config.locale = :en
 
 PICTURE_NUM = 20
 
+# サンプルユーザー
+User.create!(
+  name:  "サンプル",
+  email: "sample@examole.com",
+  password:              "password",
+  password_confirmation: "password"
+ )
+
 1.upto(50) do |n|
   name  = Faker::TvShows::BreakingBad.character
-  email = "sample3-#{n}@example.com"
+  email = "sample-#{n}@example.com"
   password = "password"
   User.create!(name:  name,
                email: email,
