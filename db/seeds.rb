@@ -5,7 +5,7 @@ PICTURE_NUM = 20
 # サンプルユーザー
 User.create!(
   name:  "サンプル",
-  email: "sample@examole.com",
+  email: "sample@example.com",
   password:              "password",
   password_confirmation: "password"
  )
