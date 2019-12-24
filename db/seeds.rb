@@ -14,14 +14,9 @@ PICTURE_NUM = 20
 end
 
 # サンプルユーザー
-sampe = User.create!(
-  name:  "サンプル",
-  email: "sample@example.com",
-  password:              "password",
-  password_confirmation: "password"
- )
+sample = User.create!(name:"サンプル",email: "sample@example.com",password:"password",password_confirmation: "password")
 
-users = User.order(:created_at).take(10).push(sampe)
+users = User.order(:created_at).take(10).push(sample)
 
 users.each.with_index(1) do |user, n|
   #プロフィール画像の更新
