@@ -7,7 +7,7 @@ jobs:
           RAILS_ENV: test
           DB_HOST: 127.0.0.1
       - image: circleci/postgres:11.5-alpine
-    working_directory: ~/repo
+    working_directory: ~/myapp
     steps:
       - checkout
       - restore_cache:
