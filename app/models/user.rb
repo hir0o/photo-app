@@ -20,33 +20,33 @@ class User < ApplicationRecord
   # 足跡関係
   has_many :footprints, dependent: :destroy
   has_many :footprint_posts, through: :footprints, source: :post
- 
-   def following?(other_user)
-     following_relationships.find_by(following_id: other_user.id)
-   end
- 
-   def follow!(other_user)
-     following_relationships.create!(following_id: other_user.id)
-   end
- 
-   def unfollow!(other_user)
-     following_relationships.find_by(following_id: other_user.id).destroy
-   end
+
+  def following?(other_user)
+    following_relationships.find_by(following_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    following_relationships.create!(following_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    following_relationships.find_by(following_id: other_user.id).destroy
+  end
 
   def unfollow!(other_user)
     following_relationships.find_by(following_id: other_user.id).destroy
   end
 
   def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
+    likes.exists?(post_id: post.id)
   end
 
   def self.search(search)
     where(['name LIKE ?', "%#{search}%"])
   end
 
-    #  minimagick
-    def thumbnail
-      return self.variant(resize: '150x150').processed
-    end
+  #  minimagick
+  def thumbnail
+    variant(resize: '150x150').processed
+  end
 end

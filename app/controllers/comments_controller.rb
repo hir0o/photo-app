@@ -21,13 +21,12 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @succeed = false
     flash.now[:success] = "コメントを更新しました。"
-    if @comment.update(content: params[:comment][:content])
-      @succeed = true
-    end
+    @succeed = true if @comment.update(content: params[:comment][:content])
   end
 
   private
-    def comment_params
-      params.require(:comment, :post_id).permit(:content)
-    end
+
+  def comment_params
+    params.require(:comment, :post_id).permit(:content)
+  end
 end

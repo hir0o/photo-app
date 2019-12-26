@@ -6,29 +6,28 @@ PICTURE_NUM = 20
   name  = Faker::TvShows::BreakingBad.character
   email = "sample-#{n}@example.com"
   password = "password"
-  User.create!(name:  name,
+  User.create!(name: name,
                email: email,
-               password:              password,
-               password_confirmation: password
-              )
+               password: password,
+               password_confirmation: password)
 end
 
 # サンプルユーザー
 sampe = User.create!(
-  name:  "サンプル",
+  name: "サンプル",
   email: "sample@example.com",
-  password:              "password",
+  password: "password",
   password_confirmation: "password"
- )
+)
 
 users = User.order(:created_at).take(10).push(sampe)
 
 users.each.with_index(1) do |user, n|
-  #プロフィール画像の更新
+  # プロフィール画像の更新
   user.profile_image = open("#{Rails.root}/db/sample/profile/profile-#{n}.jpg")
   user.save
   # 写真の投稿
-  1.upto(6) do |n|
+  1.upto(6) do |_n|
     title = Faker::Movie.quote
     description = Faker::Lorem.sentence
     pictures = [
@@ -39,17 +38,17 @@ users.each.with_index(1) do |user, n|
     latitude = rand(34..52)
     longitude = rand(-117..-77)
     user.posts.create(
-                  title: title,
-                  description: description,
-                  pictures: pictures,
-                  latitude: latitude,
-                  longitude: longitude
+      title: title,
+      description: description,
+      pictures: pictures,
+      latitude: latitude,
+      longitude: longitude
     )
   end
 end
 
 # リレーションシップ
-user  = users.last
+user = users.last
 following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow!(followed) }
@@ -71,7 +70,7 @@ end
   end
 end
 
-#コメント
+# コメント
 0.upto(10) do |i|
   0.upto(10) do |n|
     content = Faker::Lorem.sentence

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :likes, only: %i[index]
     member do
       get :following, :followers, :map
-     end
+    end
   end
   resources :relationships, only: %i[create destroy]
   resources :posts do
@@ -16,6 +16,5 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create edit update destroy]
   end
 
-  get'/map',to: 'posts#map'
-
+  get '/map', to: 'posts#map'
 end
