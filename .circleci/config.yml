@@ -59,7 +59,7 @@ jobs:
       - run:
           name: "DB Migrate"
           command: |
-            aws ecs run-task --region ap-northeast-1 --cluster portforio-claster --task-definition portfolio-task --overrides file://ecs/run_task_db_migrate.json
+            aws ecs run-task --region ap-northeast-1 --cluster p-claster --task-definition portfolio-task --overrides file://ecs/run_task_db_migrate.json
       - run:
           name: "Update Task"
           command: |
@@ -67,7 +67,7 @@ jobs:
       - run:
           name: "Update Service"
           command: |
-              aws ecs update-service --cluster portforio-claster --service portforio-service --task-definition portfolio-task --region ap-northeast-1
+              aws ecs update-service --cluster p-claster --service p-service --task-definition portfolio-task --region ap-northeast-1
 workflows:
   version: 2
   test_and_deploy:
