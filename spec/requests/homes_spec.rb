@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe "ホームのリクエストテスト", type: :request do
-
   describe "GET /" do
     before do
       get root_path

@@ -1,15 +1,14 @@
 class UsersController < ApplicationController
   before_action :serch
   USER_PER = 12
-  
 
   def index
     @q = User.ransack(params[:q])
-    if params[:q]
-      @users = @q.result(distinct: true).order('created_at DESC').page(params[:page]).per(USER_PER)
-    else
-      @users = User.order('created_at DESC').page(params[:page]).per(USER_PER)
-    end
+    @users = if params[:q]
+               @q.result(distinct: true).order('created_at DESC').page(params[:page]).per(USER_PER)
+             else
+               User.order('created_at DESC').page(params[:page]).per(USER_PER)
+             end
   end
 
   def show
@@ -18,7 +17,7 @@ class UsersController < ApplicationController
     @post_places = @user.posts.select("latitude", "longitude")
     respond_to do |format|
       format.html
-      format.js {render 'posts/index'}
+      format.js { render 'posts/index' }
     end
   end
 
@@ -42,7 +41,7 @@ class UsersController < ApplicationController
 
   private
 
-    def serch
-      @q = User.ransack(params[:q])
-    end
+  def serch
+    @q = User.ransack(params[:q])
+  end
 end

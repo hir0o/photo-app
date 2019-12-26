@@ -1,16 +1,16 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create destroy new edit]
   before_action :correct_user, only: %i[edit]
-  
+
   def index
     @q = Post.ransack(params[:q])
-    if @tag_name = params[:tag_name]
-      @posts = Post.tag_search(params[:tag_name]).page(params[:page]).per(PER)
-    elsif params[:q]
-      @posts = @q.result.order('created_at DESC').page(params[:page]).per(PER)
-    else
-      @posts = Post.page(params[:page]).per(PER)
-    end
+    @posts = if @tag_name = params[:tag_name]
+               Post.tag_search(params[:tag_name]).page(params[:page]).per(PER)
+             elsif params[:q]
+               @q.result.order('created_at DESC').page(params[:page]).per(PER)
+             else
+               Post.page(params[:page]).per(PER)
+             end
   end
 
   def new
@@ -19,9 +19,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    if current_user
-      current_user.footprints.create(post_id: @post.id)
-    end
+    current_user&.footprints&.create(post_id: @post.id)
     @like = Like.new
     @comment = Comment.new
     @comments = @post.comments
@@ -30,7 +28,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(posts_params)
     if @post.save
-      redirect_to current_user, flash: {success: "投稿に成功しました。"}
+      redirect_to current_user, flash: { success: "投稿に成功しました。" }
     else
       render :new
     end
@@ -59,17 +57,17 @@ class PostsController < ApplicationController
   def map
     @posts = Post.all
   end
-  
-  private
-  
-    def posts_params
-      params.require(:post).permit(
-        :title, :tag_list, {pictures: []}, :address, :latitude, :longitude, :description
-      )
-    end
 
-    def correct_user
-      @post = Post.find(params[:id])
-      redirect_to(root_url) unless @post.user == current_user
-    end
+  private
+
+  def posts_params
+    params.require(:post).permit(
+      :title, :tag_list, { pictures: [] }, :address, :latitude, :longitude, :description
+    )
+  end
+
+  def correct_user
+    @post = Post.find(params[:id])
+    redirect_to(root_url) unless @post.user == current_user
+  end
 end

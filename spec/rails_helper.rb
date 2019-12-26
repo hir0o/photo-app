@@ -62,33 +62,30 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  Capybara.server_host = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}.ip_address
+  Capybara.server_host = Socket.ip_address_list.detect(&:ipv4_private?).ip_address
   Capybara.server_port = 3001
-  
+
   Capybara.register_driver :selenium_remote do |app|
     url = "http://chrome:4444/wd/hub"
     opts = { desired_capabilities: :chrome, browser: :remote, url: url }
     driver = Capybara::Selenium::Driver.new(app, opts)
   end
-  
+
   config.after do |example|
-    if example.metadata[:type] == :feature and example.exception
-        page.save_screenshot 'screenshot/テスト失敗時スクリーンショット.png'
-    end 
-  end 
+    page.save_screenshot 'screenshot/テスト失敗時スクリーンショット.png' if (example.metadata[:type] == :feature) && example.exception
+  end
 
   config.before(:each, type: :system) do
     driven_by :rack_test
   end
-  
 
   config.before(:each, type: :system, js: true) do
     driven_by :selenium_remote
     host! "http://#{Capybara.server_host}:#{Capybara.server_port}"
   end
 
-  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, type: :controller
 
-  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } #support directoryをrequire
-  config.include RequestSpecHelper, type: :request #type: :requestのときにRequestHelperをinclude
+  Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f } # support directoryをrequire
+  config.include RequestSpecHelper, type: :request # type: :requestのときにRequestHelperをinclude
 end
