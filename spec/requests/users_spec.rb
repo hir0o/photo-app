@@ -96,7 +96,6 @@ RSpec.describe "ユーザーのリクエストテスト", type: :request do
   end
 
   describe 'PUT #update' do
-
     context 'パラメータが妥当な場合' do
       before do
         @user1 = FactoryBot.create(:user1)

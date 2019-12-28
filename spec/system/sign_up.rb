@@ -35,7 +35,7 @@ describe '新規ユーザー登録のテスト', type: :system do
     it 'メールアドレスのエラーメッセージが表示されること' do
       expect(page).to have_content 'メールアドレスを入力してください'
     end
-    
+
     it 'パスワードのエラーメッセージが表示されること' do
       expect(page).to have_content 'パスワードを入力してください'
     end

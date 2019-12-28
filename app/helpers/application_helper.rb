@@ -10,7 +10,7 @@ module ApplicationHelper
   def created_date(object)
     object.created_at.strftime('%m月%d日')
   end
-  
+
   def serch_placeholder
     if controller.controller_name == "posts"
       "キーワードで投稿を検索"

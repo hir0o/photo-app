@@ -48,7 +48,7 @@ RSpec.describe "投稿のリクエストテスト", type: :request do
       @user2 = FactoryBot.create(:user2)
       @post = FactoryBot.create(:post, user: @user1)
     end
-    
+
     describe 'ログイン指定ない場合' do
       before do
         get edit_post_path(@post)
@@ -75,15 +75,15 @@ RSpec.describe "投稿のリクエストテスト", type: :request do
         sign_in @user1
         get edit_post_path(@post)
       end
-  
+
       it 'リクエストが成功すること' do
         expect(response.status).to eq 200
       end
-  
+
       it '投稿タイトルが表示されていること' do
         expect(response.body).to include 'タイトル'
       end
-  
+
       it '説明が表示されていること' do
         expect(response.body).to include '説明'
       end
@@ -112,7 +112,7 @@ RSpec.describe "投稿のリクエストテスト", type: :request do
         sign_in user1
         post posts_url, params: { post: FactoryBot.attributes_for(:post, :invalid, user: user1) }
       end
-      
+
       it 'リクエストが成功すること' do
         expect(response.status).to eq 200
       end

@@ -19,14 +19,12 @@ class Post < ApplicationRecord
   # google map api
   geocoded_by :address
   after_validation :geocode
-  
+
   def self.search(search)
     where(['title LIKE ?', "%#{search}%"])
   end
 
   def self.tag_search(tag_name)
-    tagged_with("#{tag_name}")
+    tagged_with(tag_name.to_s)
   end
-
-
 end

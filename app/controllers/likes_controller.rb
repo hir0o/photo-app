@@ -21,7 +21,7 @@ class LikesController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.js {render 'posts/index'}
+      format.js { render 'posts/index' }
     end
   end
 end
