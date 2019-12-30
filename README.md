@@ -11,7 +11,7 @@ http://travelphoto.work
 
 # 使用技術
 - Ruby 2.6.2
-- Ruby on Rails 6.2.3
+- Ruby on Rails 2.6.2
 - postgreSQL 11.5
 - Nginx
 - AWS
@@ -40,27 +40,16 @@ http://travelphoto.work
 
 # 機能一覧、使用したgemなど
 - 投稿機能
-  - 投稿機能
-  - 複数枚の写真の投稿機能
+  - 複数枚の写真の投稿
   - 位置情報の検索機能(geocoder)
-  - 投稿編集機能
-  - 投稿削除機能
-  - 投稿検索機能
 - コメント機能(Ajax)
-  - コメント投稿機能
-  - コメント編集機能
-  - コメント削除機能
-- ユーザー登録機能(devise)
-  - マイページ機能
-    - プロフィール編集機能
-      - プロフィール画像変更時の、プレビュー機能
-    - ユーザ検索機能
+- ユーザー登録機能、ログイン機能(devise)
 - ページネーション機能(kaminari)
   - もっと見るボタン(Ajax)
 - いいね機能(Ajax)
-  - 投稿いいね機能
 - フォロー機能(Ajax)
-- タグ機能（acts-as-taggable-on）
+- 検索機能(Ransack)
+- タグ機能(acts-as-taggable-on)
 
 # テスト
 - RSpec
