@@ -5,7 +5,7 @@
 ![Screen_shot](https://user-images.githubusercontent.com/44374005/71571357-2f8c6f00-2b1d-11ea-97ec-d0a6938dc2b9.png)
 
 # リンク
-http://travelphoto.work
+http://travelphoto.work <br>
 ログインページの下部の、簡単ログインボタンから、サンプルユーザーとしてログインできます。
 
 
