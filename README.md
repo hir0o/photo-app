@@ -11,7 +11,7 @@ http://travelphoto.work <br>
 
 # 使用技術
 - Ruby 2.6.2
-- Ruby on Rails 2.6.2
+- Ruby on Rails 5.2.2
 - postgreSQL 11.5
 - Nginx
 - AWS
