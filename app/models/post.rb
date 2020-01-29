@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   validates  :pictures, presence: true, length: { maximum: 5 }
   validates  :user_id, presence: true
   validates  :title, presence: true, length: { maximum: 50 }
-  # validates  :latitude, presence: true
+  validates  :latitude, presence: true
   # like関係
   has_many   :likes, dependent: :destroy
   has_many   :liked_users, through: :likes, source: :user
