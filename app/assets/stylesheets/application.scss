@@ -1208,7 +1208,9 @@ input[type="submit"].account-delete-btn {
   text-align: center;
   padding: 1rem;
 }
-
+.field_with_errors {
+  display: none;
+}
 
 
 
