@@ -847,6 +847,15 @@ input[type="text"].edit-comment {
   display: inline;
   position: relative;
 }
+.like-form {
+  .button_to {
+    display: inline;
+  }
+  &__btn {
+    background: transparent;
+    border: none;
+  }
+}
 
 .arrow_box {
   display: none;
