@@ -739,11 +739,23 @@ input[type="submit"].follow-btn {
       position: absolute;
       right: 0;
       font-size: .75rem;
+      &#button_input {
+      border: none;
+      background: none;
+      display: inline;
+      padding: 0;
+      }
     }
     &__destroy {
       position: absolute;
       right: 2rem;
       font-size: .75rem;
+      &#button_input {
+      border: none;
+      background: none;
+      display: inline;
+      padding: 0;
+      }
     }
     &__date {
       font-size: 0.75rem;
