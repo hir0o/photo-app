@@ -1,6 +1,6 @@
 # TLAVEL PHOTO
 複数枚の写真を、位置情報つきで投稿できるサービスです。
-就職活動用のポートフォリオとして制作致しました。
+ポートフォリオとして制作致しました。
 
 ![Screen_shot](https://user-images.githubusercontent.com/44374005/71571357-2f8c6f00-2b1d-11ea-97ec-d0a6938dc2b9.png)
 
