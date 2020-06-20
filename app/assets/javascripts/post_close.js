@@ -9,4 +9,4 @@ $(".modal-dialog").click(function() {
 });
 $(".modal-content").click(function(e){
   e.stopPropagation();
-}); 
+});  
