@@ -65,7 +65,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # 追加gem
 gem 'devise'
 gem 'bcrypt',        '~> 3.1.13'
-gem 'carrierwave',   '1.2.2'
+gem 'carrierwave',   '1.3.2'
 gem 'mini_magick',   '4.7.0'
 gem 'ransack'
 gem 'acts-as-taggable-on', '~> 6.0'
